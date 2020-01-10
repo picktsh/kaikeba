@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 插值 -->
+    <p>{{counter}}</p>
+    <p>{{counter}}</p>
+    <p>{{counter}}</p>
+    <!-- 指令 -->
+    <p k-text="counter"></p>
+    <p k-html="desc"></p>
+  </div>
+
+  <script src="compile.js"></script>
+  <script src="kvue.js"></script>
+  <script>
+
+    const app = new KVue({
+      el:'#app',
+      data: {
+        counter: 1,
+        desc:'<span style="color:red">kvue可还行？</span>'
+      },
+    })
+    setInterval(() => {
+      app.counter++
+      // app.$data.counter++
+    }, 1000);
+    
+  </script>
+</body>
+</html>
