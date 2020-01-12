@@ -105,4 +105,8 @@ class Compiler {
 	htmlUpdater(node, value) {
 		node.innerHTML = value
 	}
+	// k-model
+	model(node, exp) {
+		this.update(node, exp, 'model')
+	}
 }
