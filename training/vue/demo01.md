@@ -1,6 +1,6 @@
 ### v-if 和 v-for 哪个优先级更高?如果两个同时出现,应该怎么优化得到更好的性能？
 
-_Author rise created on 2020/1/20_
+` Author rise created on 2020/1/20 `
 
 > 当 v-if 与 v-for 一起使用时，v-for 具有比 v-if 更高的优先级。
 
