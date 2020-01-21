@@ -7,6 +7,9 @@
 - 为什么?  
 举例:`v-for="item in list" v-if="!item.checked"` 这段代码,如果`if`先执行很显然是拿不到`item`这个值的, 所以需要先执行`v-for`循环,先拿到`item`  再交给`v-if`
 
+测试代码: 通过`render`函数生成的代码中 `_l(),_C(),_e()`的判断关系得出结论  
+源码位置: `/src/compiler/codegen/index.js:64`
+
 >  优化, 一般有两种常见的情况  
 
 - 过滤一个列表中的某些项

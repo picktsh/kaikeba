@@ -61,7 +61,7 @@ export function genElement (el: ASTElement, state: CodegenState): string {
     return genStatic(el, state)
   } else if (el.once && !el.onceProcessed) {
     return genOnce(el, state)
-  } else if (el.for && !el.forProcessed) {
+  } else if (el.for && !el.forProcessed) { // 源码中生成元素的函数内部,执行判断的先后排列,t01
     return genFor(el, state)
   } else if (el.if && !el.ifProcessed) {
     return genIf(el, state)
