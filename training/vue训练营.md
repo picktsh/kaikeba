@@ -6,7 +6,7 @@ _Author rise created on 2020/1/20_
 3. [你知道vue中key的作用和工作原理吗？说说你对它的理解](./vue/demo03.md)
 4. [你怎么理解 vue 中的 diff 算法？](vue/demo04_2.md)
 5. [谈一谈对vue组件化的理解？](vue/demo05_2.md)
-6. [谈一谈你对vue设计原则的理解?](vue/demo06.md)
+6. [谈一谈你对vue设计原则的理解?](vue/demo06_2.md)
 7. [vue为什么要求组件模板只能有一个根元素?](vue/demo07.md)
 8. [谈谈你对MVC、MVP和MVVM的理解？](vue/demo08.md)
 
