@@ -11,6 +11,13 @@ _Author rise created on 2020/1/20_
 8. [谈谈你对MVC、MVP和MVVM的理解？](vue/demo08.md)
 9. [谈谈你对vue组件之间通信的理解？](vue/demo09.md)
 
+
+
+
+
+
+
+
 > [石墨文档地址](https://shimo.im/sheets/hgq3HqqDKWWDhCCQ/MODOC)
 
 
