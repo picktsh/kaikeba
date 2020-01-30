@@ -11,6 +11,7 @@ _Author rise created on 2020/1/20_
 8. [谈谈你对MVC、MVP和MVVM的理解？](./vue/demo08.md)
 9. [谈谈你对vue组件之间通信的理解？](./vue/demo09.md)
 10. [你了解哪些vue性能优化方法？](./vue/demo10.md)
+10. [你知道vue3有哪些新特性吗?它会带来什么影响?](./vue/demo11.md)
 
 
 
