@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<div id="app">
+	<input type="text" v-model="msg">//测试数据更新时的钩子
+	{{msg}}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+<script>
+	let vm = new Vue({
+		el: "#app",
+		data: {
+			msg: "data数据",
+		},
+		methods: {
+			fn() {
+				this.msg = "改变data数据"
+			}
+		},
+		beforeCreate() {
+			// 创建之前;无法获取响应数据
+			console.log("beforeCreate", "data:" + this.msg, "el:" + this.$el);
+		},
+		created() {
+			// 创建之后
+			console.log("created", "data:" + this.msg, "el:" + this.$el);
+		},
+		beforeMount() {
+			// 挂载前
+			console.log("beforeMount", "data:" + this.msg, "el:" + this.$el);
+		},
+		mounted() {
+			// 挂载后
+			console.log("mounted", "data:" + this.msg, "el:" + this.$el);
+		},
+		beforeUpdate() {
+			// 数据更新之前
+			console.log("beforeUpdate", "data:" + this.msg, "el:" + this.$el);
+		},
+		updated() {
+			// 数据更新完成之后；
+			console.log("updated", "data:" + this.msg, "el:" + this.$el);
+		},
+		beforeDestroy() {
+			// 销毁之前
+			console.log("beforeDestroy", "data:" + this.msg, "el:" + this.$el);
+		},
+		destroyed() {
+			// 销毁之后
+			console.log("destroyed", "data:" + this.msg, "el:" + this.$el);
+		}
+	});
+	// vm.$destroy();//测试销毁组件调用的钩子
+	
+	/*
+	//测试结果
+	//初始化过程
+	beforeCreate data:undefined el:undefined
+	created data:data数据 el:undefined
+	beforeMount data:data数据 el:[object HTMLDivElement]
+	mounted data:data数据 el:[object HTMLDivElement]
+	
+	//数据更新后
+	beforeUpdate data:data数据更新 el:[object HTMLDivElement]
+	updated data:data数据更新 el:[object HTMLDivElement]
+	
+	//数据销毁后
+	beforeDestroy data:data数据 el:[object HTMLDivElement]
+	destroyed data:data数据 el:[object HTMLDivElement]
+	*/
+</script>
+</body>
+</html>
