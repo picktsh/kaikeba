@@ -12,10 +12,10 @@ function Vue (options) {
   ) {
     warn('Vue is a constructor and should be called with the `new` keyword')
   }
-  // 初始化
+  // 只有在new Vue() 时才会执行_init方法 就是 initMixin 中的 _init方法
   this._init(options)
 }
-
+// 初始化 option相关工作,<=此处调用 beforeCreate,created 勾子
 initMixin(Vue)  // 通过该方法给Vue添加_init方法
 stateMixin(Vue) // $set,$delete,$watch
 eventsMixin(Vue) // $emit,$on,$off,$once
