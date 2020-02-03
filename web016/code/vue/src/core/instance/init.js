@@ -49,7 +49,7 @@ export function initMixin (Vue: Class<Component>) {
       vm._renderProxy = vm
     }
     // expose real self
-    // 
+    //
     vm._self = vm
     initLifecycle(vm)  // $parent, $root, $children, $refs
     initEvents(vm)     // 对父组件传入事件添加监听
@@ -58,7 +58,7 @@ export function initMixin (Vue: Class<Component>) {
     initInjections(vm) // 注入数据
     initState(vm)      // 重要：数据初始化，响应式
     initProvide(vm) // 提供数据
-    callHook(vm, 'created')
+    callHook(vm, 'created') // 执行 created 生命周期狗子函数
 
     /* istanbul ignore if */
     if (process.env.NODE_ENV !== 'production' && config.performance && mark) {
@@ -67,8 +67,8 @@ export function initMixin (Vue: Class<Component>) {
       measure(`vue ${vm._name} init`, startTag, endTag)
     }
 
-    if (vm.$options.el) {
-      vm.$mount(vm.$options.el)
+    if (vm.$options.el) { // 判断el元素
+      vm.$mount(vm.$options.el) // 挂在该el DOM元素
     }
   }
 }

@@ -124,7 +124,7 @@ export function lifecycleMixin (Vue: Class<Component>) {
     // invoke destroy hooks on current rendered tree
     vm.__patch__(vm._vnode, null)
     // fire destroyed hook
-    callHook(vm, 'destroyed')
+    callHook(vm, 'destroyed') // *调用 destroyed
     // turn off all instance listeners.
     vm.$off()
     // remove __vue__ reference
@@ -142,8 +142,8 @@ export function mountComponent (
   vm: Component,
   el: ?Element,
   hydrating?: boolean
-): Component {
-  vm.$el = el
+): Component { // 挂载组件 em: Vue实例 el:真是的DOM节点对象
+  vm.$el = el // 绑定 #el
   if (!vm.$options.render) {
     vm.$options.render = createEmptyVNode
     if (process.env.NODE_ENV !== 'production') {
@@ -164,7 +164,7 @@ export function mountComponent (
       }
     }
   }
-  callHook(vm, 'beforeMount')
+  callHook(vm, 'beforeMount') // 挂载前,执行生命周期里的 beforeMount 勾子
 
   let updateComponent
   /* istanbul ignore if */
@@ -188,6 +188,10 @@ export function mountComponent (
   } else {
     // 用户$mount()时，定义updateComponent
     updateComponent = () => {
+      // 更新视图,第一个参数返回VNode
+      // vm._render 会根据我们的html模板和vm上的数据生成一个新的VNode
+      // nm._update 会将新的 VNode 与旧的VNode进行对比,执行__patch__ 方法打补丁,并更新真实DOM
+      // 初始化时,肯定没有旧的 VNode,这个时候就会全量更新DOM
       vm._update(vm._render(), hydrating)
     }
   }
@@ -195,10 +199,13 @@ export function mountComponent (
   // we set this to vm._watcher inside the watcher's constructor
   // since the watcher's initial patch may call $forceUpdate (e.g. inside child
   // component's mounted hook), which relies on vm._watcher being already defined
+  // 当 new Watcher 时,会执行, updateComponent
+  // 执行 updateComponent 函数会访问 data 中的数据,相当于触发了 data数据中的get属性
+  // data数据中的get属性,就相当于触发了依赖收集
   new Watcher(vm, updateComponent, noop, {
     before () {
-      if (vm._isMounted && !vm._isDestroyed) {
-        callHook(vm, 'beforeUpdate')
+      if (vm._isMounted && !vm._isDestroyed) { // 修改当前 vm 的状态
+        callHook(vm, 'beforeUpdate') // beforeUpdate 钩子被调用
       }
     }
   }, true /* isRenderWatcher */)
@@ -208,7 +215,7 @@ export function mountComponent (
   // mounted is called for render-created child components in its inserted hook
   if (vm.$vnode == null) {
     vm._isMounted = true
-    callHook(vm, 'mounted')
+    callHook(vm, 'mounted') // 挂载完成,执行生命滚周期的 mounted 勾子
   }
   return vm
 }

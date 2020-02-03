@@ -40,9 +40,9 @@ Vue.prototype.$mount = function (
   el?: string | Element,
   hydrating?: boolean
 ): Component {
-  el = el && inBrowser ? query(el) : undefined
+  el = el && inBrowser ? query(el) : undefined // 判断是否存在el 以及是否在浏览器环境
   // 初始化，将首次渲染结果替换el
-  return mountComponent(this, el, hydrating)
+  return mountComponent(this, el, hydrating) // 调用 mountComponent
 }
 
 // devtools global hook
