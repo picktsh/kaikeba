@@ -11,13 +11,16 @@ _Author rise created on 2020/1/20_
 8. [谈谈你对MVC、MVP和MVVM的理解？](./vue/demo08.md)
 9. [谈谈你对vue组件之间通信的理解？](./vue/demo09.md)
 10. [你了解哪些vue性能优化方法？](./vue/demo10.md)
-10. [你知道vue3有哪些新特性吗?它会带来什么影响?](./vue/demo11_2.md)
-10. [vue如果想扩展某个现有的组件时应该怎么做?](./vue/demo12.md)
-10. [watch和computed的区别以及怎么选用?](./vue/demo13.md)
-10. [谈谈你对vue生命周期的理解?](./vue/demo14.md)
-10. [谈谈你对vuex使用及其理解?](./vue/demo15.md)
-10. [你知道nextTick的原理吗？](./vue/demo16.md)
-10. [demo16](./vue/demo16.md)
+11. [你知道vue3有哪些新特性吗?它会带来什么影响?](./vue/demo11_2.md)
+12. [vue如果想扩展某个现有的组件时应该怎么做?](./vue/demo12.md)
+13. [watch和computed的区别以及怎么选用?](./vue/demo13.md)
+14. [谈谈你对vue生命周期的理解?](./vue/demo14.md)
+15. [谈谈你对vuex使用及其理解?](./vue/demo15.md)
+16. [你知道nextTick的原理吗？](./vue/demo16.md)
+17. [demo17](./vue/demo17.md)
+18. [demo18](./vue/demo18.md)
+19. [demo19](./vue/demo19.md)
+20. [demo20](./vue/demo20.md)
 
 
 
