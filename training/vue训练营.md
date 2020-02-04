@@ -16,6 +16,7 @@ _Author rise created on 2020/1/20_
 10. [watch和computed的区别以及怎么选用?](./vue/demo13.md)
 10. [谈谈你对vue生命周期的理解?](./vue/demo14.md)
 10. [谈谈你对vuex使用及其理解?](./vue/demo15.md)
+10. [你知道nextTick的原理吗？](./vue/demo16.md)
 10. [demo16](./vue/demo16.md)
 
 
