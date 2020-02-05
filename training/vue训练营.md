@@ -17,7 +17,7 @@ _Author rise created on 2020/1/20_
 14. [谈谈你对vue生命周期的理解?](./vue/demo14.md)
 15. [谈谈你对vuex使用及其理解?](./vue/demo15.md)
 16. [你知道nextTick的原理吗？](./vue/demo16.md)
-17. [demo17](./vue/demo17.md)
+17. [你知道vue的双向数据绑定的原理吗?](./vue/demo17.md)
 18. [demo18](./vue/demo18.md)
 19. [demo19](./vue/demo19.md)
 20. [demo20](./vue/demo20.md)
