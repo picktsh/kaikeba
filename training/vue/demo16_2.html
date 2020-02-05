@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+<script>
+	// MutationObserver 基本用法
+	var observer = MutationObserver(function () {
+		// 这里是回调函数
+		console.log('DOM被修改了');
+	});
+	var article = document.querySelector('article');
+	observer.observe(article);
+	
+	// 微任务
+	for (let i = 0; i < 100; i++) {
+		dom.style.left = i + 'px'
+	}
+	// 事实上,这100次for循环同属一个task,浏览器只在task执行完后进行一次 DOM更新
+</script>
+</body>
+</html>
