@@ -19,7 +19,7 @@ _Author rise created on 2020/1/20_
 16. [你知道nextTick的原理吗？](./vue/demo16.md)
 17. [你知道vue的双向数据绑定的原理吗?](./vue/demo17.md)
 18. [vue-router导航钩子有哪些？](./vue/demo18.md)
-19. [demo19](./vue/demo19.md)
+19. [什么是一个递归组件？](./vue/demo19.md)
 20. [demo20](./vue/demo20.md)
 
 
