@@ -22,14 +22,4 @@ _Author rise created on 2020/1/20_
 19. [什么是一个递归组件？](./vue/demo19.md)
 20. [谈一谈你对vue响应式原理的理解？](./vue/demo20.md)
 
-
-
-
-
-
-
-
 > [石墨文档地址](https://shimo.im/sheets/hgq3HqqDKWWDhCCQ/MODOC)
-
-
-
