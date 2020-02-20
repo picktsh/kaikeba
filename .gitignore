@@ -1,3 +1,4 @@
 .idea
 .vscode
 node_modules/
+react*1/build
