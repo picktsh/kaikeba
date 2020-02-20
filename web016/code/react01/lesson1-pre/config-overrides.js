@@ -1,14 +1,16 @@
-const {override, fixBabelImports, addLessLoader} = require("customize-cra");
+//根目录创建config-overrides.js
+const {
+  override,
+  fixBabelImports,
+  addDecoratorsLegacy
+} = require("customize-cra");
 
 module.exports = override(
   fixBabelImports("import", {
-    // antd按需加载
+    //antd按需加载
     libraryName: "antd",
     libraryDirectory: "es",
-    style: true
+    style: "css"
   }),
-  addLessLoader({
-    javascriptEnabled: true,
-    modifyVars: {"@primary-color": "red"}
-  })
+  addDecoratorsLegacy() //配置装饰器
 );
