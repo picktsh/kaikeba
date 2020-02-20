@@ -7,6 +7,7 @@ export default function kFormCreate(Cmp) {
       this.state = {};
       this.options = {};
     }
+    
     handleChange = e => {
       // setState name value
       let {name, value} = e.target;
@@ -16,11 +17,19 @@ export default function kFormCreate(Cmp) {
       this.options[field] = option;
       return InputCmp => {
         //克隆一份
-        return React.cloneElement(InputCmp, {
-          name: field,
-          value: this.state[field] || "",
-          onChange: this.handleChange
-        });
+        return (
+          <div className="form-item">
+            {React.cloneElement(InputCmp, {
+              name: field,
+              value: this.state[field] || "",
+              onChange: this.handleChange
+            })}
+            <div className="form-msg" style={{height: '21px', color: 'red'}}>
+              {this.state['show_' + field + '_Message'] &&
+              option.rules[0].message}
+            </div>
+          
+          </div>)
       };
     };
     getFieldsValue = () => {
@@ -34,9 +43,18 @@ export default function kFormCreate(Cmp) {
       const errors = {};
       const state = {...this.state};
       for (let name in this.options) {
-        if (state[name] === undefined) {
+        // 字段验证，或正则验证
+        // 提示消息内容
+        // 提示消息是否显示,这是在submit的时候做的事情
+        console.log(this.options[name].rules[0].regExp.test(state[name]), state[name]);
+        if ((!state[name]) || this.options[name].rules[0].regExp.test(state[name]) === false) {
+          // if (!state[name]) {
           // 没有输入，判断为不合法
           errors[name] = "error";
+          // 设置是否显示提示消息的状态
+          this.setState({['show_' + name + '_Message']: true})
+        } else {
+          this.setState({['show_' + name + '_Message']: false})
         }
       }
       if (JSON.stringify(errors) === "{}") {
@@ -46,6 +64,7 @@ export default function kFormCreate(Cmp) {
         callback(errors, state);
       }
     };
+    
     render() {
       return (
         <div className="border">
