@@ -17,12 +17,12 @@ export default class ReduxPage extends Component {
     store.dispatch({type: "MINUS"});
   };
   asyAdd = () => {
-    // 派发操作
-    store.dispatch(dispatch => {
-      setTimeout(() => {
-        dispatch({type: "ADD"});
-      }, 1000);
-    });
+    // 异步派发操作(需要中间件来实现)
+    // store.dispatch(dispatch => {
+    //   setTimeout(() => {
+    //     dispatch({type: "ADD"});
+    //   }, 1000);
+    // });
   };
   
   render() {
@@ -32,9 +32,9 @@ export default class ReduxPage extends Component {
         <h3>ReduxPage</h3>
         {/* getState获取数据 */}
         <p>{store.getState()}</p>
-        <button onClick={this.add}>add</button>
-        <button onClick={this.minus}>minus</button>
-        <button onClick={this.asyAdd}>asyAdd</button>
+        <button onClick={this.add}>add +1</button>
+        <button onClick={this.minus}>minus -1</button>
+        <button onClick={this.asyAdd}>asyAdd +1</button>
       </div>
     );
   }
