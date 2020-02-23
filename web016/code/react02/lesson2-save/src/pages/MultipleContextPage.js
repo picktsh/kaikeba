@@ -1,12 +1,12 @@
 import React, {Component} from "react";
-import {ThemeConsumer} from "../themeContext";
+import {ThemeConsumer} from "../ThemeContext";
 import {UserConsumer} from "../userContext";
 
-export default class MultipleContextsPage extends Component {
+export default class MultipleContextPage extends Component {
   render() {
     return (
-      <div className="border">
-        <h3>MultipleContextsPage</h3>
+      <div>
+        <h3>MultipleContextPage</h3>
         <ThemeConsumer>
           {theme => (
             <UserConsumer>

@@ -1,11 +1,16 @@
 import React, {Component} from "react";
-import {ThemeProvider} from "../themeContext";
-import {UserProvider} from "../userContext";
 import ContextTypePage from "./ContextTypePage";
 import ConsumerPage from "./ConsumerPage";
-import MultipleContextsPage from "./MultipleContextsPage";
+import MultipleContextPage from "./MultipleContextPage";
+import {ThemeProvider} from "../ThemeContext";
+import {UserProvider} from "../userContext";
 
-class ContextPage extends Component {
+// 使用contetx步骤
+// 1. 创建 createContext
+// 2. Proiver接收value，以保证有传下去的数据
+// 3. 接收 Consumer或者class.contextType
+
+export default class ContextPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,22 +33,19 @@ class ContextPage extends Component {
   render() {
     const {theme, user} = this.state;
     return (
-      <div className="App">
-        {/* 组件跨层级通信 */}
+      <div>
         <button onClick={this.changeColor}>change color</button>
-        {/* 如果把这里的MyProvider注释掉，ContextTypePage和ConsumerPage里将取不到theme值，而取默认值pink */}
+        <h3>ContextPage</h3>
         <ThemeProvider value={theme}>
+          {/* 只能订阅一个context */}
           <ContextTypePage />
-          <ConsumerPage />
 
-          {/*多个Context */}
+          <ConsumerPage />
           <UserProvider value={user}>
-            <MultipleContextsPage />
+            <MultipleContextPage />
           </UserProvider>
         </ThemeProvider>
       </div>
     );
   }
 }
-
-export default ContextPage;
