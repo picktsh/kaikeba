@@ -56,7 +56,7 @@ export const connect = (
     };
     
     render() {
-      console.log("this.context", this.context); //sy-log
+      // console.log("this.context", this.context); //sy-log
       return <WrappedComponent {...this.state.props} />;
     }
   };

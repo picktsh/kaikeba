@@ -1,61 +1,64 @@
 import React, {Component} from "react";
-import {connect} from "react-redux";
-// import {bindActionCreators} from "redux";
-import {bindActionCreators} from "../kReactRedux";
+// import {connect} from "react-redux";
+import {connect} from "../kReactRedux";
 
-function mapStateToProps(state) {
-  // mapStateToProps Function 把state映射到了props上
-  // return {...state}
-  return {count: state}
-}
+import {bindActionCreators} from "redux";
 
-function mapDispatchToProps(dispatch) {
-  // mapDispatchToProps Object/Function 不定义，默认注入dispatch
+// connect 链接store与组件 其实这里返回的是一个新的组件  hoc
+export default connect(
+  // mapStateToProps Function (state, [ownProps])
+  state => ({count: state}),
+  // ownProps是组件本身的props
+  // ! ownProps谨慎使用，如果ownProps发生变化的话，mapStateToProps会被重新执行，
+  // ! state也会被重新计算，这个时候影响性能
+  // (state, ownProps) => {
+  //   console.log("ownProps", ownProps); //sy-log
+  //   return {
+  //     count: state
+  //   };
+  // }
+
+  // mapDispatchToProps Object/Function
+  // 如果不指定mapDispatchToProps， 默认props会被注入dispatch本身
+  // object ，dispatch本身不会被注入props
   // {
   //   add: () => ({type: "ADD"})
   // }
-  let actions = {
-    add: () => ({type: "ADD"}),
-    minus: () => ({type: "MINUS"})
-  };
-  actions = bindActionCreators(actions, dispatch);
-  return {
-    dispatch,
-    ...actions
-  };
-  
-}
-
-function mergeProps(stateProps, dispatchProps, ownProps) {
-  // 如果指定了这个参数，`mapStateToProps()` 与 `mapDispatchToProps()` 的执⾏结果和组件⾃身的`props` 将传⼊到这个回调函数中。
-  
-  console.log("mergeProps", stateProps,
-    dispatchProps, ownProps); //sy-log
-  return {
-    omg: "omg",
-    ...stateProps,
-    ...dispatchProps,
-    ...ownProps
-  };
-}
-
-class ReactReduxPage extends Component {
-  render() {
-    console.log("props", this.props); //sy-log
-    const {count, dispatch, add, minus} = this.props;
-    return (
-      <div>
-        <h3>ReactReduxPage</h3>
-        <p>{count}</p>
-        <button onClick={() => dispatch({type: "ADD"})}>
-          add - use dispatch
-        </button>
-        <button onClick={add}>add</button>
-        <button onClick={minus}>minus</button>
-      </div>
-    );
+  // function (dispatch, [ownProps])
+  // ! ownProps谨慎使用，如果ownProps发生变化的话，mapDispatchToProps会被重新执行，
+  // ! 这个时候影响性能
+  (dispatch, ownProps) => {
+    console.log("ownProps", ownProps); //sy-log
+    let res = {
+      add: () => ({type: "ADD"}),
+      minus: () => ({type: "MINUS"})
+    };
+    res = bindActionCreators(res, dispatch);
+    return {
+      dispatch,
+      ...res
+    };
   }
-}
-
-// connect帮助组件获得store，hoc，返回了一个新的组件
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(ReactReduxPage);
+  //mergeProps
+  // (stateProps, dispatchProps, ownProps) => {
+  //   return {omg: "omg", ...stateProps, ...dispatchProps, ...ownProps};
+  // }
+)(
+  class ReactReduxPage extends Component {
+    render() {
+      console.log("props", this.props); //sy-log
+      const {count, dispatch, add, minus} = this.props;
+      return (
+        <div>
+          <h3>ReactReduxPage</h3>
+          <p>{count}</p>
+          <button onClick={() => dispatch({type: "ADD"})}>
+            add use dispatch
+          </button>
+          <button onClick={add}>add</button>
+          <button onClick={minus}>minus</button>
+        </div>
+      );
+    }
+  }
+);

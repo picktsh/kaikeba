@@ -1,12 +1,18 @@
 import {createStore} from "redux";
 
-// 定义修改规则
-function countReducer(state = 0, action) {
+function initialState() {
+  return {
+    username: '还未登陆',
+    isLogin: false
+  }
+}
+
+function countReducer(state = initialState(), action) {
   switch (action.type) {
-    case "ADD":
-      return state + 1;
-    case "MINUS":
-      return state - 1;
+    case "LOGIN":
+      return {isLogin: true};
+    case "LOGOUT":
+      return {isLogin: false};
     default:
       return state;
   }
