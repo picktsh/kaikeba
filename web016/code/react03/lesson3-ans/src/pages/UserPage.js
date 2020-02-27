@@ -14,7 +14,7 @@ export default connect(
       const {logout} = this.props;
       return (
         <div>
-          <h3>UserPage</h3>
+          <h3>用户中心 UserPage</h3>
           <button onClick={logout}>click logout </button>
         </div>
       );
