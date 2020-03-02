@@ -1,0 +1,243 @@
+{
+  "getHomeCarousel": {
+    "code": 0,
+    "success": true,
+    "msg": "成功",
+    "data": [
+      {
+        "src": "//m.360buyimg.com/mobilecms/s700x280_jfs/t1/49973/2/8672/125419/5d679259Ecd46f8e7/0669f8801dff67e8.jpg!cr_1125x445_0_171!q70.jpg.dpg",
+        "link": "//pro.m.jd.com/mall/active/2E9UcjJuA8HzCohFZrbeejFxif43/index.html"
+      },
+      {
+        "src": "//m.360buyimg.com/mobilecms/s700x280_jfs/t1/72784/6/9827/95228/5d761502E14d7680e/b2487c04dc149493.jpg.dpg",
+        "link": "//pro.m.jd.com/mall/active/WzEzNbSPfcyGimNaQYgcfg4zj6s/index.html"
+      },
+      {
+        "src": "//m.360buyimg.com/mobilecms/s700x280_jfs/t1/54804/6/9763/100362/5d70d600E58b486c0/338649970453974a.jpg!cr_1125x445_0_171!q70.jpg.dpg",
+        "link": "//ccc-x.jd.com/dsp/nc?ext=aHR0cHM6Ly9wcm8ubS5qZC5jb20vbWFsbC9hY3RpdmUvM1loRGFkNFBrQTY0a0NGNzJNMUhIdFdaVVdOVy9pbmRleC5odG1s&amp;log=FvG18RZ3egEmT7x2vh8qch1TFG2Ep1RN00U89sm3UrCEdXVM6Gcoaa6vLXhCV4dKNqkMcBehfQlHLKMbaFhOHHBMIZkRfBGq27odJI2WXkQWgYN_1_NJm5RRh5qxsvpFmduymcCQgrovd9nZZ3Q-4TFRmrHMZNobtCMGTCkfg-PT0WPGLIoV3DsMGmsYCG-jr2ek6mrV18KWCA5ZtcGJVIYw1MN7vH76JR_UQK4RHLRfqO0rckDVlIq4X_Krmy5ruTwZz4UI89qwrWlv5SQc_-h_pXCmQyYfKY1_UJzPhLV00CmQxCwfRf400WL28mvbXHvMOwB-ziBYFjP8Pk41buBHKmE50UzU3aNt1F-NN-Cq1JBq-JOZn74dUGOuelhm6ptsShdHzeaaEK8llumsDwfIU1hnnZ5yieCKBao6BaRdZDFbc8sXUWBkNDdRCnAu-aqbwUJOL6JbVVfbT6T_ixgMrP8yPvbo-5P0meRlYkHrWSXH7lHAVjQPA1zC0s2IgPsRacSX3VGi3Yvv42xii3fkXev8YFeX3nvzxaI9BzotxZgKsPbOWYxUkxwnDrq4diyEmjvjKX0hICQzSkJXanpsQRhjWN129Q9_O9e5SQw&amp;v=404&amp;_=1"
+      },
+      {
+        "src": "//m.360buyimg.com/mobilecms/s700x280_jfs/t1/70482/36/9694/118020/5d75fbf7E640dbfd1/970323c0633094e9.jpg!cr_1125x445_0_171!q70.jpg.dpg",
+        "link": "//ccc-x.jd.com/dsp/nc?ext=aHR0cHM6Ly9wcm8ubS5qZC5jb20vbWFsbC9hY3RpdmUvM2hnaFFYVHBUWlUxS0FvTlJSVUc0RU41WmFSUi9pbmRleC5odG1s&amp;log=jejvTQzPq4z0ZfSWjQRJdFnp6WjC27oqD4lCfKdSpxAIjl1XSK7Tu3AknWY2zXdV603O4oTCDxNwa80WX2Gy1Ypa2NY5Tb6rqqTdqnIdA26Qv1sGVQFZLRLviO5Myp1XphbbZyPdkFv5SiCSPmkYDwJwYfhiTRID_cQ_dfKNTkW2ezgQyztLIvoO2aGboxbmJXmsYjWkn-JAQ5qHDzeGcEae1-rNUU_P-E09mgI3bdoRcW64HnUruTvQc9gPFCx4OSlPOXbJQvZZ-XO-gUuzcW38CQfZYLKYCDWIEo_dh22vOzrKSnTIy9x_HawIy4QAcI1oe5J1eL8UDfZmO6j2BhIWjrouNYg1hsMCNZDrTY4Zj9XdY0GmYatoT6WmRJ6j_2VR0S9YYYv0uIlBEu-8XcLXKXjB2O1PvYKKdAAq1xy_pXSpzc3u3BG8Ol0xcbsd5POOIsS0mpnfT4ngxxhnxWr08btIHrt6PERNn7O5I2y3uaC3H61v2Gx4PrqRYxnIIrq4TwzOFHdNcx-HBihRWgWEs-_hJD_wakiaoC4GQlcVWB5wcQp4XT7jdbJSCYaAOIpmzLGufd1q8iyuNfHqOQS00Htd0uqkQfUeHTmxpb2pq93qU_ZFVtTIr7o7_2Vt&amp;v=404&amp;_=1"
+      }
+    ]
+  },
+  "getMallNav": {
+    "code": 0,
+    "success": true,
+    "msg": "成功",
+    "data": [
+      {
+        "icon": "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/20983/16/10753/6124/5c8a16aaE5d6b15d7/01e0e818a7505267.png.webp",
+        "title": "京东超市",
+        "link": "//h5.m.jd.com/rn/3LmeNuQDfT1nN8qZS4jZoZQMFeV7/index.html"
+      },
+      {
+        "icon": "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/39401/17/2391/5859/5cc06fcfE2ad40668/28cda0a571b4a576.png.webp",
+        "title": "数码电器",
+        "link": "https://pro.m.jd.com/mall/active/3rAACSv3E1VYnu9w4TFtboYD2d4R/index.html"
+      },
+      {
+        "icon": "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/17169/3/4127/4611/5c2f35cfEd87b0dd5/65c0cdc1362635fc.png.webp",
+        "title": "服饰美妆",
+        "link": "https://h5.m.jd.com/babelDiy/Zeus/28Lq4LbJDJcuMhNb9tQ6EcbZ8GTu/index.html"
+      },
+      {
+        "icon": "https://m.360buyimg.com/mobilecms/s120x120_jfs/t17725/156/1767366877/17404/f45d418b/5ad87bf0N66c5db7c.png.webp",
+        "title": "京东生鲜",
+        "link": "https://pro.m.jd.com/mall/active/4P9a2T9osR9JvtzHVaYTPvsecRtg/index.html?has_native=0"
+      },
+      {
+        "icon": "https://m.360buyimg.com/mobilecms/s120x120_jfs/t16990/157/2001547525/17770/a7b93378/5ae01befN2494769f.png.webp",
+        "title": "京东到家",
+        "link": "https://daojia.jd.com/html/index.html?channel=jdapp"
+      },
+      {
+        "icon": "https://m.360buyimg.com/mobilecms/s120x120_jfs/t18454/342/2607665324/6406/273daced/5b03b74eN3541598d.png.webp",
+        "title": "充值缴费",
+        "link": "https://newcz.m.jd.com/"
+      },
+      {
+        "icon": "https://m.360buyimg.com/mobilecms/s120x120_jfs/t22228/270/207441984/11564/88140ab7/5b03fae3N67f78fe3.png.webp",
+        "title": "9.9元拼",
+        "link": "https://wqs.jd.com/pingou/index.shtml?ptag=138097.1.8&sceneval=2"
+      },
+      {
+        "icon": "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/7068/29/8987/5605/5c120da2Ecae1cc3a/016033c7ef3e0c6c.png.webp",
+        "title": "领券",
+        "link": "https://coupon.m.jd.com/center/getCouponCenter.action"
+      },
+      {
+        "icon": "https://m.360buyimg.com/mobilecms/s120x120_jfs/t17116/175/2673385904/6610/50f5ef50/5b03b7aeNf3a7fa37.png.webp",
+        "title": "借钱",
+        "link": "https://u.jr.jd.com/growing/reMoney/home/?t=0"
+      },
+      {
+        "icon": "https://m.360buyimg.com/mobilecms/s120x120_jfs/t1/22262/9/1470/4527/5c120cd0E5d3c6c66/4792ec307a853e9f.png.webp",
+        "title": "plus会员",
+        "link": "https://plus.m.jd.com/index"
+      }
+    ]
+  },
+  "getUserInfo": {
+    "code": 0,
+    "success": true,
+    "msg": "成功",
+    "data": {
+      "id": null,
+      "userName": "gaoshaoyun",
+      "mobile": "185****1324",
+      "headIcon": "https://img11.360buyimg.com/jdphoto/s120x120_jfs/t21160/90/706848746/2813/d1060df5/5b163ef9N4a3d7aa6.png"
+    }
+  },
+  "login": {
+    "code": 0,
+    "success": true,
+    "msg": "成功",
+    "data": {
+      "id": 0,
+      "userName": "gaoshaoyun",
+      "mobile": "185****1324",
+      "headIcon": "https://img11.360buyimg.com/jdphoto/s120x120_jfs/t21160/90/706848746/2813/d1060df5/5b163ef9N4a3d7aa6.png"
+    }
+  },
+  "getFirstCatgories": {
+    "code": 0,
+    "success": true,
+    "msg": "成功",
+    "data": [
+      {
+        "id": 0,
+        "title": "热门推荐"
+      },
+      {
+        "id": 1,
+        "title": "手机数码"
+      },
+      {
+        "id": 2,
+        "title": "家用电器"
+      },
+      {
+        "id": 3,
+        "title": "电脑办公"
+      },
+      {
+        "id": 4,
+        "title": "美妆护肤"
+      },
+      {
+        "id": 5,
+        "title": "个护清洁"
+      },
+      {
+        "id": 6,
+        "title": "汽车生活"
+      },
+      {
+        "id": 7,
+        "title": "京东超市"
+      },
+      {
+        "id": 8,
+        "title": "男装"
+      },
+      {
+        "id": 9,
+        "title": "女装"
+      }
+    ]
+  },
+  "getSecondCatgories": {
+    "code": 0,
+    "success": true,
+    "msg": "成功",
+    "data": [
+      {
+        "title": "热门分类",
+        "children": [
+          {
+            "title": "手机",
+            "id": "",
+            "image": "https://img14.360buyimg.com/focus/s140x140_jfs/t27136/183/1628977274/31007/a6f7ed55/5be6ebd8Nb07ef492.png"
+          },
+          {
+            "title": "耳机",
+            "id": "",
+            "image": "https://img30.360buyimg.com/focus/s140x140_jfs/t1/21233/40/7634/13890/5c6d039bE8a65d667/aef9581abcc85725.png"
+          },
+          {
+            "title": "华为",
+            "id": "",
+            "image": "https://img30.360buyimg.com/focus/s140x140_jfs/t1/1446/14/631/8500/5b9237e5E0d1f9e16/b1a627b92323b5ed.png"
+          },
+          {
+            "title": "电磁炉",
+            "id": "",
+            "image": "https://img11.360buyimg.com/focus/s140x140_jfs/t1/26217/19/7605/22816/5c6d03a3E4f263c9d/d6fc27b51078358c.png"
+          },
+          {
+            "title": "路由器",
+            "id": "",
+            "image": "https://img14.360buyimg.com/focus/s140x140_jfs/t27400/283/1600620667/15106/a935e7bd/5be6f2e1Nfa8d9d6e.png"
+          },
+          {
+            "title": "吹风机",
+            "id": "",
+            "image": "https://img12.360buyimg.com/focus/s140x140_jfs/t1/25144/37/2370/7617/5c1cae45Ea0ec5a85/f7ba433b5d1e072f.png"
+          }
+        ]
+      },
+      {
+        "title": "专场推荐",
+        "children": [
+          {
+            "title": "三只松鼠",
+            "id": "",
+            "image": "https://img11.360buyimg.com/focus/s140x140_jfs/t1/30718/32/2643/9923/5c6d03ecEabd2d664/aaee556800519e1f.png"
+          },
+          {
+            "title": "洗发水",
+            "id": "",
+            "image": "https://img13.360buyimg.com/focus/s140x140_jfs/t1/25168/27/9848/15397/5c822507E35d2ad16/384983a98758f8f8.png"
+          },
+          {
+            "title": "女装",
+            "id": "",
+            "image": "https://img11.360buyimg.com/focus/s140x140_jfs/t19732/6/697088077/2894/2788a72/5a9fbfd2Ncc01c1b5.jpg"
+          },
+          {
+            "title": "冰箱",
+            "id": "",
+            "image": "https://img20.360buyimg.com/focus/s140x140_jfs/t21115/83/225125274/13856/5473fb3f/5b0567c1N59d53b27.png"
+          },
+          {
+            "title": "洗衣机",
+            "id": "",
+            "image": "https://img14.360buyimg.com/focus/s140x140_jfs/t21664/15/237213959/24996/a3c6c7d6/5b0567c7N9cc1c355.png"
+          },
+          {
+            "title": "保温杯",
+            "id": "",
+            "image": "https://img11.360buyimg.com/focus/s140x140_jfs/t1/11731/9/10730/9518/5c822298Eb50b3275/33f88663e1c0284e.png"
+          }
+        ]
+      },
+      {
+        "title": "热门分类",
+        "children": [
+          {
+            "title": "蓝月亮",
+            "id": "",
+            "image": "https://img13.360buyimg.com/focus/s140x140_jfs/t1/23312/39/9884/7280/5c822292E65f3929b/78ba741d321954b0.png"
+          },
+          {
+            "title": "微波炉",
+            "id": "",
+            "image": "https://img10.360buyimg.com/focus/s140x140_jfs/t1/21353/14/7486/17896/5c6d03c0Eb9c58d49/9210736682f59e39.png"
+          }
+        ]
+      }
+    ]
+  }
+}
