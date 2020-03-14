@@ -1,2 +1,5 @@
-console.log('hello kkb')
-console.log('hello nodemon')
+const helloKkb = 'hello kkb';
+console.log(helloKkb)
+const helloNodemon = 'hello nodemon';
+console.log(helloNodemon)
+module.exports = helloKkb
