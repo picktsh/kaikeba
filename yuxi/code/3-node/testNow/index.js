@@ -22,7 +22,7 @@ module.exports = class TestNow {
     console.log('filename', filename);
     const testFileName = this.genTestFileName(filename)
     // 判断此文件是否存在
-    if (this.existsSync(testFileName)) {
+    if (fs.existsSync(testFileName)) {
       console.log('该测试代码已存在', testFileName);
       return undefined;
     }
