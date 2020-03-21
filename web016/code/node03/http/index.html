@@ -1,0 +1,8 @@
+<script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
+<script>
+  (async () => {
+    const res = await axios.get('./api/users')
+    console.log('res', res.data);
+    document.write(`Response ${JSON.stringify(res.data)}`)
+  })()
+</script>
