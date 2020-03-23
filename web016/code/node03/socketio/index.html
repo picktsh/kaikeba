@@ -4,34 +4,79 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>简易聊天室</title>
+	<title>rise崛起 的聊天室</title>
+	<link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 	<style>
 	
 	</style>
 </head>
 <body>
-<ul id="messages">
-	<li>消息</li>
-</ul>
-<form action="">
-	<input type="text" id="m">
-	<input type="button" class="btn-send" value="发送">
-</form>
+<div id="app">
+	<div class="container">
+		<div class="msg-header">
+			<div class="alert alert-primary" role="alert">{{title}}</div>
+		</div>
+		<ul id="messages">
+			<li v-for="item in msgList">{{item.content}}</li>
+		</ul>
+		
+		<div class="input-group">
+			<textarea class="form-control" aria-label="With textarea" v-model="inputVal"></textarea>
+			<div class="input-group-append">
+				<button class="btn btn-primary btn-outline-default" type="button" @click="sendMsg">发送</button>
+			</div>
+		</div>
+	</div>
+</div>
 <script src="https://cdn.bootcss.com/socket.io/2.2.0/socket.io.js"></script>
-<script src="https://cdn.bootcss.com/jquery/2.2.2/jquery.min.js"></script>
+<!--<script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
+<script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script>
-  $(function () {
-    var socket = io();
-    $('form').submit(function (e) {
-      e.preventDefault(); // 避免表单提交的默认行为
-      socket.emit('chat message', $('#m').val())
-      $('#m').val('');
-      return false
-    });
-    socket.on('chat message', function (msg) {
-      $('#messages').append($('<li>').text(msg));
-    })
-  })
+  /**
+   * 上线提醒
+   * 用户列表 (获取用户名-计算机名)
+   * 支持修改自己的昵称,默认为计算机名
+   * */
+  console.log(returnCitySN);
+  const socket = io();
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      title: 'rise崛起 的聊天室',
+      msgList: [
+        {username: '', content: '默认消息'}, // 消息结构示例
+      ], // 消息列表默认空
+      inputVal: '', // 文本域
+      online: 0,// 在线人数
+      user: {
+        cip: '',
+        cid: '',
+        cname: '',
+        nikeName: '',
+      },
+    },
+    methods: {
+      // 发送消息
+      sendMsg() {
+        if (!this.inputVal) return;
+        const msg = {username: 'username', content: this.inputVal};
+        socket.emit('chat message', msg);
+        this.inputVal = '';
+      }
+    },
+    computed: {
+      // 用户昵称
+      nikeName() {
+      }
+    },
+    mounted() {
+      // 开始监听 聊天 事件
+      socket.on('chat message', msg => {
+        this.msgList.push(msg);
+      })
+    }
+  });
 </script>
 </body>
 </html>
