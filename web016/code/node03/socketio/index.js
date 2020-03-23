@@ -1,10 +1,11 @@
 // websocket的应用
 // 1.简易的聊天室
-// 2.浏览器控制台
+// 2.浏览器模仿控制台
 var app = require('express')();
 var http = require('http').Server(app);
 
 var io = require('socket.io')(http);
+// 请求根根路径
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html')
 });
@@ -25,3 +26,6 @@ io.on('connection', function (socket) {
 http.listen(3001, function () {
   console.log('listen on 3001');
 });
+/**
+ * 储存聊天记录
+ * */

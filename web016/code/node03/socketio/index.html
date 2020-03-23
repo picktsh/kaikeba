@@ -7,7 +7,21 @@
 	<title>rise崛起 的聊天室</title>
 	<link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 	<style>
-	
+		/*表头*/
+		.msg-header{}
+		.msg-header .alert{ margin-bottom: 0;}
+		/*列表*/
+		.list-group{}
+		.list-group .msg-item{ position: relative; }
+		.list-group .msg-item.other{ padding-left: 60px;}
+		.list-group .msg-item.me{ float: right; padding-right: 60px; }
+		.list-group .msg-item .head{ width: 50px; height: 50px; border-radius: 5px; border: 1px solid #EEEEEE; background: rgba(0, 0, 0, .05)}
+		.list-group .msg-item.other .head{ position: absolute; left: 0; }
+		.list-group .msg-item.me .head{ position: absolute; right: 0; }
+		.list-group .msg-item .username{ color: #999999;}
+		.list-group .msg-item .content{ display: inline-block; padding: 5px 10px; border-radius: 5px; background: #EEEEEE;}
+		.list-group .msg-item.other .content{}
+		.list-group .msg-item.me .content{ float: right; }
 	</style>
 </head>
 <body>
@@ -16,8 +30,14 @@
 		<div class="msg-header">
 			<div class="alert alert-primary" role="alert">{{title}}</div>
 		</div>
-		<ul id="messages">
-			<li v-for="item in msgList">{{item.content}}</li>
+		<ul class="list-group">
+			<li v-for="item in msgList" class="list-group-item" aria-disabled="true">
+				<div :class="['msg-item',isMe(item)?'me':'other']">
+					<div class="head">{{item.head}}</div>
+					<div class="username">{{nikeName(item)}}</div>
+					<div class="content">{{item.content}}</div>
+				</div>
+			</li>
 		</ul>
 		
 		<div class="input-group">
@@ -29,38 +49,49 @@
 	</div>
 </div>
 <script src="https://cdn.bootcss.com/socket.io/2.2.0/socket.io.js"></script>
-<!--<script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>-->
 <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
 <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+
 <script>
   /**
    * 上线提醒
    * 用户列表 (获取用户名-计算机名)
-   * 支持修改自己的昵称,默认为计算机名
+   * 支持修改自己的昵称,默认为代理IP
+   * 上拉加载历史
+   * 根据IP区分自己和别人的消息 √
+   * 添加用户默认头像
+   * 构建界面,用现有插件兼容移动端
+   * 用户的判断 需要重新构思,设备号/IP
    * */
-  console.log(returnCitySN);
   const socket = io();
   const vm = new Vue({
     el: '#app',
     data: {
       title: 'rise崛起 的聊天室',
       msgList: [
-        {username: '', content: '默认消息'}, // 消息结构示例
+        {
+          username: 'username',
+          content: '一条示例消息',
+          cip: returnCitySN.cip,
+        }, // 消息结构示例
       ], // 消息列表默认空
       inputVal: '', // 文本域
       online: 0,// 在线人数
       user: {
-        cip: '',
-        cid: '',
-        cname: '',
-        nikeName: '',
+        returnCitySN: returnCitySN,
+        // var returnCitySN = {"cip": "180.191.159.91", "cid": "PH", "cname": "PHILIPPINES"};
+        nikeName: navigator.platform,
       },
     },
     methods: {
       // 发送消息
       sendMsg() {
         if (!this.inputVal) return;
-        const msg = {username: 'username', content: this.inputVal};
+        const msg = {
+          username: navigator.platform,
+          content: this.inputVal,
+          cip: this.user.returnCitySN.cip
+        };
         socket.emit('chat message', msg);
         this.inputVal = '';
       }
@@ -68,6 +99,17 @@
     computed: {
       // 用户昵称
       nikeName() {
+        return function (item) {
+          // 有用户名 使用用户名,如果没有那就使用IP
+          return item.username ? item.username : item.cip;
+        }
+      },
+      // is me
+      isMe() {
+        return function (item) {
+          // console.log(this.user.returnCitySN.cip, item);
+          return item.username === this.user.nikeName && item.cip === this.user.returnCitySN.cip;
+        }
       }
     },
     mounted() {
@@ -75,6 +117,7 @@
       socket.on('chat message', msg => {
         this.msgList.push(msg);
       })
+      
     }
   });
 </script>
