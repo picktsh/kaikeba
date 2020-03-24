@@ -40,5 +40,5 @@ rl.on('line', function (input) {
 })
 rl.on('close', function () {
   console.log('close');
-  process.exct(0)
+  process.exit(0)
 })
