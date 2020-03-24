@@ -23,8 +23,8 @@ io.on('connection', function (socket) {
     console.log('user disconnect');
   })
 });
-http.listen(3001, function () {
-  console.log('listen on 3001');
+http.listen(9000, function () {
+  console.log('listen on 9000');
 });
 /**
  * 使用单文件fs储存聊天记录
