@@ -7,6 +7,9 @@
   
   // 定义模型
   const Fruit = sequelize.define('Fruit', {
+    // id: {
+    //   type: Sequelize.DateType.UUID
+    // },
     name: {type: Sequelize.STRING(20), allowNull: false},
     price: {type: Sequelize.FLOAT, allowNull: false},
     stock: {type: Sequelize.INTEGER, defaultValue: 0},
