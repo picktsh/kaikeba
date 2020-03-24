@@ -50,8 +50,8 @@
 </div>
 <script src="https://cdn.bootcss.com/socket.io/2.2.0/socket.io.js"></script>
 <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
-<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
-
+<!--<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>-->
+<script src="/ip">/*这是node接口 返回 userIP*/</script>
 <script>
   /**
    * 上线提醒
@@ -62,7 +62,8 @@
    * 添加用户默认头像
    * 构建界面,用现有插件兼容移动端
    * 用户的判断 需要重新构思,设备号/IP
-   * 使用第四节课学到的 单文件储存来做数据持久化
+   * 使用第四节课学到的 单文件储存来做数据持久化,
+   * 获取IP更改成node服务端获取,不需要用soho
    * */
   const socket = io();
   const vm = new Vue({
@@ -73,15 +74,13 @@
         {
           username: 'username',
           content: '一条示例消息',
-          cip: returnCitySN.cip,
+          cip: '',
         }, // 消息结构示例
       ], // 消息列表默认空
       inputVal: '', // 文本域
       online: 0,// 在线人数
       user: {
-        returnCitySN: returnCitySN,
-        // var returnCitySN = {"cip": "180.191.159.91", "cid": "PH", "cname": "PHILIPPINES"};
-        nikeName: navigator.platform,
+        nikeName: userIP,
       },
     },
     methods: {
@@ -89,9 +88,9 @@
       sendMsg() {
         if (!this.inputVal) return;
         const msg = {
-          username: navigator.platform,
+          username: userIP,
           content: this.inputVal,
-          cip: this.user.returnCitySN.cip
+          cip: ''
         };
         socket.emit('chat message', msg);
         this.inputVal = '';
@@ -108,8 +107,7 @@
       // is me
       isMe() {
         return function (item) {
-          // console.log(this.user.returnCitySN.cip, item);
-          return item.username === this.user.nikeName && item.cip === this.user.returnCitySN.cip;
+          return item.username === this.user.nikeName;
         }
       }
     },
