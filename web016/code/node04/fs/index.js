@@ -32,10 +32,12 @@ rl.on('line', function (input) {
   const [op, key, value] = input.split(' ')
   if (op === 'get') {
     get(key)
-  } else if (op === 'quit') {
+  } else if (op === 'set') {
     set(key, value)
+  } else if (op === 'quit') {
+    rl.close();
   } else {
-    rl.close()
+    console.log('没有该操作');
   }
 })
 rl.on('close', function () {
