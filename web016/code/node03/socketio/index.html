@@ -88,9 +88,7 @@
       sendMsg() {
         if (!this.inputVal) return;
         const msg = {
-          username: userIP,
           content: this.inputVal,
-          cip: ''
         };
         socket.emit('chat message', msg);
         this.inputVal = '';
