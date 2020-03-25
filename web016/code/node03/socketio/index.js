@@ -30,7 +30,9 @@ function checkUser(ip) {
 
 function addMessage(msg, userIP) {
   db.get('message', data => {
-    data[msg.id] = msg;
+    // 消息列表用数组存储
+    if (Object.keys(data).length === 0) data = [];
+    data.push(msg);
     db.set('message', data)
   });
   
