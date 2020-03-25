@@ -7,43 +7,53 @@
 	<title>rise崛起 的聊天室</title>
 	<link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 	<style>
+		.msg-wrapper{position: fixed; top: 0; left: 0; right: 0;bottom: 0; width: 100%; height: 100%; padding: 50px 0 62px;}
 		/*表头*/
-		.msg-header{}
+		.msg-header{ position: absolute; top: 0; left: 0; right: 0;}
 		.msg-header .alert{ margin-bottom: 0;}
 		/*列表*/
-		.list-group{}
-		.list-group .msg-item{ position: relative; }
-		.list-group .msg-item.other{ padding-left: 60px;}
-		.list-group .msg-item.me{ float: right; padding-right: 60px; }
-		.list-group .msg-item .head{ width: 50px; height: 50px; border-radius: 5px; border: 1px solid #EEEEEE; background: rgba(0, 0, 0, .05)}
-		.list-group .msg-item.other .head{ position: absolute; left: 0; }
-		.list-group .msg-item.me .head{ position: absolute; right: 0; }
-		.list-group .msg-item .username{ color: #999999;}
-		.list-group .msg-item .content{ display: inline-block; padding: 5px 10px; border-radius: 5px; background: #EEEEEE;}
-		.list-group .msg-item.other .content{}
-		.list-group .msg-item.me .content{ float: right; }
+		.msg-body{ height: 100%; overflow-y: auto; }
+		.msg-body .list-group{ }
+		.msg-body .list-group li{ border: none; min-height: 82px; }
+		.msg-body .list-group li.list-bottom{ min-height: unset; height: 0;}
+		.msg-body .msg-item{ position: relative; }
+		.msg-body .msg-item.other{ padding-left: 60px;}
+		.msg-body .msg-item.me{ float: right; padding-right: 60px; }
+		.msg-body .msg-item .head{ width: 50px; height: 50px; border-radius: 25px; border: 1px solid #EEEEEE; background: rgba(0, 0, 0, .05)}
+		.msg-body .msg-item.other .head{ position: absolute; left: 0; }
+		.msg-body .msg-item.me .head{ position: absolute; right: 0; }
+		.msg-body .msg-item .username{ color: #999999;}
+		.msg-body .msg-item .content{ display: inline-block; padding: 5px 10px; border-radius: 5px; background: #EEEEEE;}
+		.msg-body .msg-item.other .content{}
+		.msg-body .msg-item.me .content{ float: right; }
+		/*页脚输入框*/
+		.msg-footer{ position: absolute; bottom: 0; }
 	</style>
 </head>
 <body>
 <div id="app">
 	<div class="container">
-		<div class="msg-header">
-			<div class="alert alert-primary" role="alert">{{title}}</div>
-		</div>
-		<ul class="list-group">
-			<li v-for="item in msgList" class="list-group-item" aria-disabled="true">
-				<div :class="['msg-item',isMe(item)?'me':'other']">
-					<div class="head">{{item.head}}</div>
-					<div class="username">{{nikeName(item)}}</div>
-					<div class="content">{{item.content}}</div>
+		<div class="msg-wrapper">
+			<div class="msg-header">
+				<div class="alert alert-primary" role="alert">{{title}}</div>
+			</div>
+			<div class="msg-body">
+				<ul class="list-group">
+					<li v-for="item in msgList" class="list-group-item" aria-disabled="true">
+						<div :class="['msg-item',isMe(item)?'me':'other']">
+							<div class="head">{{item.head}}</div>
+							<div class="username">{{nikeName(item)}}</div>
+							<div class="content">{{item.content}}</div>
+						</div>
+					</li>
+					<li class="list-bottom hidden"></li>
+				</ul>
+			</div>
+			<div class="msg-footer input-group">
+				<textarea class="form-control" aria-label="With textarea" v-model="inputVal"></textarea>
+				<div class="input-group-append">
+					<button class="btn btn-primary btn-outline-default" type="button" @click="sendMsg">发送</button>
 				</div>
-			</li>
-		</ul>
-		
-		<div class="input-group">
-			<textarea class="form-control" aria-label="With textarea" v-model="inputVal"></textarea>
-			<div class="input-group-append">
-				<button class="btn btn-primary btn-outline-default" type="button" @click="sendMsg">发送</button>
 			</div>
 		</div>
 	</div>
@@ -51,6 +61,7 @@
 <script src="https://cdn.bootcss.com/socket.io/2.2.0/socket.io.js"></script>
 <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
 <!--<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>-->
+<script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
 <script src="/ip">/*这是node接口 返回 userIP*/</script>
 <script>
   /**
@@ -72,9 +83,11 @@
       title: 'rise崛起 的聊天室',
       msgList: [
         {
-          username: 'username',
-          content: '一条示例消息',
-          cip: '',
+          "id": "24f7f420-6ebf-11ea-89fc-b1660eda7171",
+          "user": "192.168.254.115",
+          "content": "一条示例消息",
+          "createAt": 1585157782626,
+          "updateAt": 1585157782626
         }, // 消息结构示例
       ], // 消息列表默认空
       inputVal: '', // 文本域
@@ -92,6 +105,12 @@
         };
         socket.emit('chat message', msg);
         this.inputVal = '';
+      },
+      // 消息列表触底
+      scrollToBottom() {
+        let top = document.querySelector('.list-bottom').offsetTop;
+        console.log(top);
+        document.querySelector('.msg-body').scrollTo(0, top);
       }
     },
     computed: {
@@ -99,13 +118,13 @@
       nikeName() {
         return function (item) {
           // 有用户名 使用用户名,如果没有那就使用IP
-          return item.username ? item.username : item.cip;
+          return item.user ? item.user : item.cip;
         }
       },
       // is me
       isMe() {
         return function (item) {
-          return item.username === this.user.nikeName;
+          return item.user === this.user.nikeName;
         }
       }
     },
@@ -113,9 +132,20 @@
       // 开始监听 聊天 事件
       socket.on('chat message', msg => {
         this.msgList.push(msg);
-      })
-      
-    }
+      });
+      // 请求后端的数据,返回后10条
+      axios.get('/message', {})
+        .then((response) => {
+          console.log('响应数据', response.data);
+          this.msgList = this.msgList.concat(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    },
+    updated() {
+      this.scrollToBottom()
+    },
   });
 </script>
 </body>
