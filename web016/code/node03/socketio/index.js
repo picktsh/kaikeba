@@ -49,6 +49,15 @@ app.get('/ip', function (req, res) {
   userIP = req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0];
   res.send(`const userIP = '${userIP}'`)
 });
+// 请求消息列表接口
+app.get('/message', (req, res) => {
+  let list = [];
+  db.get('message', data => {
+      list = data;
+      res.send(list)
+    }
+  )
+});
 // 所有请求--暂时全部显示为index.html
 app.get('*', function (req, res) {
   checkUser(req.ip);
