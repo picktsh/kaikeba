@@ -44,7 +44,7 @@
 					<li v-for="item in msgList" class="list-group-item" aria-disabled="true">
 						<div class="msg-time">{{msgDate(item.createAt)}}</div>
 						<div :class="['msg-item',isMe(item)?'me':'other']">
-							<div class="head">{{item.head}}</div>
+							<div class="head" :style="{background:`rgba(${item.user.replace(/\./g,',')})`}">{{item.head}}</div>
 							<div class="username">{{nikeName(item)}}</div>
 							<div class="content">{{item.content}}</div>
 						</div>
