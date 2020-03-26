@@ -16,16 +16,18 @@
 		.msg-body .list-group{ }
 		.msg-body .list-group li{ border: none; min-height: 82px; }
 		.msg-body .list-group li.list-bottom{ min-height: unset; height: 0;}
-		.msg-body .msg-item{ position: relative; }
+		.msg-body .msg-item{ position: relative; width: 100%; }
 		.msg-body .msg-item.other{ padding-left: 60px;}
 		.msg-body .msg-item.me{ float: right; padding-right: 60px; }
 		.msg-body .msg-item .head{ width: 50px; height: 50px; border-radius: 25px; border: 1px solid #EEEEEE; background: rgba(0, 0, 0, .05)}
 		.msg-body .msg-item.other .head{ position: absolute; left: 0; }
 		.msg-body .msg-item.me .head{ position: absolute; right: 0; }
-		.msg-body .msg-item .username{ color: #999999;}
-		.msg-body .msg-item .content{ display: inline-block; padding: 5px 10px; border-radius: 5px; background: #EEEEEE;}
+		.msg-body .msg-item .username{ font-size: 14px; color: #AAAAAA;}
+		.msg-body .msg-item.me .username{ text-align: right; }
+		.msg-body .msg-item .content{ display: inline-block; padding: 5px 10px; border-radius: 5px; background: #EEEEEE; font-size: 16px;}
 		.msg-body .msg-item.other .content{}
 		.msg-body .msg-item.me .content{ float: right; }
+		.msg-body .msg-time{font-size: 12px; text-align: center; color: #AAAAAA;}
 		/*页脚输入框*/
 		.msg-footer{ position: absolute; bottom: 0; }
 	</style>
@@ -76,6 +78,13 @@
    * 使用第四节课学到的 单文件储存来做数据持久化,√
    * 获取IP更改成node服务端获取,不需要用soho √
    * */
+  /**
+   * 插件清单
+   * io Function
+   * Vue Class
+   * axios Function
+   * dateFns Function
+   */
   const socket = io();
   const vm = new Vue({
     el: '#app',
