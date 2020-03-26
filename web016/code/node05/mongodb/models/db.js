@@ -2,16 +2,16 @@ const conf = require('./conf')
 const {EventEmitter} = require('events')
 
 // 客户端
-const {Mongodb} = require('mongodb')
+const {MongoClient} = require('mongodb')
 
-class MongoDB {
+class Mongodb {
   constructor(conf) {
     // 保存conf
     this.conf = conf
     this.emmiter = new EventEmitter()
     
     // 连接
-    this.client = new Mongodb(conf.url, {useNewUrlParser: true})
+    this.client = new MongoClient(conf.url, {useNewUrlParser: true})
     this.client.connect(err => {
       if (err) throw err
       console.log('连接成功');
@@ -38,4 +38,4 @@ class MongoDB {
   }
 }
 
-module.exports = new MongoDB(conf)
+module.exports = new Mongodb(conf)

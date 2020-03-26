@@ -1,4 +1,4 @@
 module.exports = {
-  url: '',
-  dbName: ''
+  url: "mongodb://localhost:27017",
+  dbName: 'test',
 }
