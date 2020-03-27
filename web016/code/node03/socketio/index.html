@@ -171,7 +171,7 @@
       nikeName() {
         return function (msg) {
           // 有用户名 使用用户名,如果没有那就使用IP
-          return this.users[msg.user] ? this.users[msg.user].name : msg.user
+          return this.users[msg.user] ? this.users[msg.user].name ? this.users[msg.user].name : msg.user : msg.user
         }
       },
       // is me
