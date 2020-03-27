@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>rise崛起 的聊天室</title>
 	<link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css" rel="stylesheet">
 	<style>
 		.msg-wrapper{position: fixed; top: 0; left: 0; right: 0;bottom: 0; width: 100%; height: 100%; padding: 50px 0 62px;}
 		/*表头*/
@@ -30,6 +31,9 @@
 		.msg-body .msg-time{font-size: 12px; text-align: center; color: #AAAAAA;}
 		/*页脚输入框*/
 		.msg-footer{ position: absolute; bottom: 0; }
+		.msg-footer .input-group-append{position: relative; }
+		.msg-footer .input-group-append .popover{ top: 10px; left: auto; right: 100%;}
+		.msg-footer .input-group-append .popover .popover-body{ white-space: nowrap; }
 	</style>
 </head>
 <body>
@@ -58,9 +62,17 @@
 						aria-label="With textarea"
 						autofocus
 						v-model="inputVal"
-						@keyup.ctrl.enter="sendMsg">.</textarea>
+						@keypress="keypress"
+						@focus="keypress"
+						@keyup.ctrl.enter="sendMsg"></textarea>
 				<div class="input-group-append">
-					<button class="btn btn-primary btn-outline-default" type="button" @click="sendMsg">发送<br/>(Ctrl+Enter)</button>
+					<div class="popover fade bs-popover-left show animated faster fadeInUp" v-if="emptyMsg">
+						<div class="arrow" style="top: 5px;"></div>
+						<h3 class="popover-header"> </h3>
+						<div class="popover-body">🙅‍不能发送空白信息</div>
+					</div>
+					<button type="button" class="btn btn-primary btn-outline-default" @click="sendMsg">发送<br/>(Ctrl+Enter)
+					</button>
 				</div>
 			</div>
 		</div>
@@ -113,15 +125,18 @@
       inputVal: '', // 文本域
       online: 0,// 在线人数
       user: {
-        nikeName: userIP,
+        ip: userIP, // 数据库中存的就是这个字段
+        name: '',
       },
+      emptyMsg: false,
     },
     methods: {
       // 发送消息
       sendMsg() {
-        if (this.inputVal.replace(/\n/g, '') === '') return;
+        this.emptyMsg = this.inputVal.replace(/\n/g, '') === '';
+        if (this.emptyMsg) return;
         const msg = {
-          content: this.inputVal.replace(/\n/g, '<br/>'),
+          content: this.inputVal.replace(/\n/g, '<br/>'), // 将 换行字符 处理成 换行代码
           user: userIP,
         };
         socket.emit('chat message', msg);
@@ -134,20 +149,22 @@
         document.querySelector('.msg-body').scrollTo(0, top);
       },
       // 回车发送消息,组合键处理
-      
+      keypress() {
+        this.emptyMsg = false;
+      }
     },
     computed: {
       // 用户昵称
       nikeName() {
-        return function (item) {
+        return function (msg) {
           // 有用户名 使用用户名,如果没有那就使用IP
-          return item.user ? item.user : item.cip;
+          return msg.user ? msg.user : msg.name;
         }
       },
       // is me
       isMe() {
-        return function (item) {
-          return item.user === this.user.nikeName;
+        return function (msg) {
+          return msg.user === this.user.ip;
         }
       },
       // 显示消息时间
