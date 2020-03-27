@@ -131,6 +131,16 @@
         createAt: 0,
         updateAt: 0,
       },
+      users: {
+        '127.0.0.1': {
+          id: '0',
+          ip: '127.0.0.1',
+          name: 'name',
+          online: false,
+          createAt: 0,
+          updateAt: 0,
+        }
+      },
       emptyMsg: false,
     },
     methods: {
@@ -160,8 +170,8 @@
       // 用户昵称
       nikeName() {
         return function (msg) {
-          // TODO 有用户名 使用用户名,如果没有那就使用IP--目前只能是自己的
-          return msg.user === this.user.ip ? this.user.name : msg.user;
+          // 有用户名 使用用户名,如果没有那就使用IP
+          return this.users[msg.user] ? this.users[msg.user].name : msg.user
         }
       },
       // is me
@@ -190,13 +200,20 @@
       socket.on('chat message', msg => {
         this.msgList.push(msg);
       });
-      // 请求用户相关信息
+      // 请求个人信息接口
       axios.get('/user', {})
         .then(response => {
-          this.user = response.data
-          console.log(this.user);
+          this.user = response.data;
+          console.log('user', response.data);
         })
-        .catch(error => console.log(error))
+        .catch(error => console.log(error));
+      // 请求所有用户信息接口 TODO post接口有问题临时改成get
+      axios.get('/users?all=1')
+        .then(response => {
+          this.users = response.data;
+          console.log('users', response.data);
+        })
+        .catch(error => console.log(error));
       // 请求后端消息数据,[期望:返回后10条,需要配套下拉刷新一起实现]
       axios.get('/message', {})
         .then(response => {
