@@ -49,11 +49,27 @@ app.get('/', function (req, res) {
   // console.log('用户[', userIP, ']发起请求');
   res.sendFile(__dirname + '/index.html')
 });
-// 请求用户信息接口
-app.get('/user', function (req, res) {
+// 请求个人信息接口
+app.get('/user', (req, res) => {
   checkUser(req, res, data => {
     res.send(data[userIP])
   });
+});
+/**
+ * 请求所有用户信息接口--用于做昵称匹配,
+ * @param all=1 返回查询到的所有用户
+ * @param user=***.***.***.***  返回当前查询的用户
+ */
+app.get('/users', async (req, res) => {
+  await db.get('user', async data => {
+    // 过滤消息中没出现过的用户,不免全部暴露(只显示发过消息的用户)
+    let params = req.query;
+    if (params['all'] === "1") {
+      res.send(data)
+    } else {
+      res.send(data[params['user']] ? data[params['user']] : {})
+    }
+  })
 });
 // 请求消息列表接口
 app.get('/message', (req, res) => {
