@@ -41,8 +41,8 @@
 			</div>
 			<div class="msg-body">
 				<ul class="list-group">
-					<li v-for="item in msgList" class="list-group-item" aria-disabled="true">
-						<div class="msg-time">{{msgDate(item.createAt)}}</div>
+					<li v-for="(item,index) in msgList" class="list-group-item" aria-disabled="true">
+						<div class="msg-time">{{msgTime(item.createAt,msgList[index-1]&&msgList[index-1].createAt)}}</div>
 						<div :class="['msg-item',isMe(item)?'me':'other']">
 							<div class="head" :style="{background:`rgba(${item.user.replace(/\./g,',')})`}">{{item.head}}</div>
 							<div class="username">{{nikeName(item)}}</div>
@@ -143,10 +143,18 @@
         }
       },
       // 消息时间
-      msgDate() {
-        return time => {
-          return dateFns.format(new Date(time), "MM-DD HH:mm:ss")
-          // return new Date(time)
+      msgTime() {
+        return (time, lastTime) => {
+          /**
+           * 在当天就不显示日期了
+           * 与上一条消息的间隔时间 超过2分钟再显示时间
+           */
+          let _time = new Date(time);
+          let isToday = dateFns.isToday(_time);
+          let res = dateFns.format(_time, isToday ? 'HH:mm' : "MM-DD HH:mm");
+          let dm = dateFns.differenceInMinutes(time, lastTime);
+          console.log(dm);
+          return dm > 2 ? res : null;
         }
       }
     },
