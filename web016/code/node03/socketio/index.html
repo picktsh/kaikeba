@@ -68,7 +68,7 @@
 				<div class="input-group-append">
 					<div class="popover fade bs-popover-left show animated faster fadeInUp" v-if="emptyMsg">
 						<div class="arrow" style="top: 5px;"></div>
-						<h3 class="popover-header"> </h3>
+						<h3 class="popover-header"></h3>
 						<div class="popover-body">🙅‍不能发送空白信息</div>
 					</div>
 					<button type="button" class="btn btn-primary btn-outline-default" @click="sendMsg">发送<br/>(Ctrl+Enter)
@@ -144,9 +144,9 @@
       },
       // 消息列表触底
       scrollToBottom() {
-        let top = document.querySelector('.list-bottom').offsetTop;
-        console.log(top);
-        document.querySelector('.msg-body').scrollTo(0, top);
+        let offsetTop = document.querySelector('.list-bottom').offsetTop;
+        console.log('.list-bottom offsetTop', offsetTop);
+        document.querySelector('.msg-body').scrollTo(0, offsetTop);
       },
       // 回车发送消息,组合键处理
       keypress() {
@@ -191,6 +191,7 @@
       axios.get('/message', {})
         .then((response) => {
           console.log('响应数据', response.data);
+          if (Object.keys(response.data).length === 0) return console.log('消息记录数量为0');
           this.msgList = this.msgList.concat(response.data);
         })
         .catch(function (error) {

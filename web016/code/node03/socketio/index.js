@@ -13,8 +13,8 @@ app.set('trust proxy', true);
 let userIP = '';
 
 // 请求浏览器发起请求的时候 判断用户,是新用户还是已存在用户
-function checkUser(ip) {
-  userIP = ip.match(/\d+\.\d+\.\d+\.\d+/)[0];
+function checkUser(req, res, callback) {
+  userIP = req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0];
   // 检索用户表,如果有就使用如果没有就新增用户
   db.get('user', data => {
     // console.log('db.get:', data);
@@ -24,8 +24,13 @@ function checkUser(ip) {
       data[userIP] = m.user(userIP);
       db.set('user', data)
     }
+    callback && callback(data)
+  }, err => {
+    let data = {};
+    data[userIP] = m.user(userIP);
+    db.set('user', data);
+    res.send(data)
   });
-  return userIP // 返回用户ID
 }
 
 function addMessage(msg) {
@@ -40,14 +45,20 @@ function addMessage(msg) {
 
 // 请求根根路径
 app.get('/', function (req, res) {
-  checkUser(req.ip);
+  checkUser(req, res);
   // console.log('用户[', userIP, ']发起请求');
   res.sendFile(__dirname + '/index.html')
 });
-// 给前端一个IP的接口
+// 给前端一个IP的接口--待废弃
 app.get('/ip', function (req, res) {
   userIP = req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0];
   res.send(`const userIP = '${userIP}'`)
+});
+// 请求用户信息接口
+app.get('/user', function (req, res) {
+  checkUser(req, res, data => {
+    res.send(data[userIP])
+  });
 });
 // 请求消息列表接口
 app.get('/message', (req, res) => {
@@ -60,7 +71,7 @@ app.get('/message', (req, res) => {
 });
 // 所有请求--暂时全部显示为index.html
 app.get('*', function (req, res) {
-  checkUser(req.ip);
+  checkUser(req, res);
   // console.log('用户[', userIP, ']发起请求');
   res.sendFile(__dirname + '/index.html')
 });
