@@ -24,7 +24,7 @@
 		.msg-body .msg-item.me .head{ position: absolute; right: 0; }
 		.msg-body .msg-item .username{ font-size: 14px; color: #AAAAAA;}
 		.msg-body .msg-item.me .username{ text-align: right; }
-		.msg-body .msg-item .content{ display: inline-block; padding: 5px 10px; border-radius: 5px; background: #EEEEEE; font-size: 16px;}
+		.msg-body .msg-item .content{ display: inline-block; min-height: 34px; padding: 5px 10px; border-radius: 5px; background: #EEEEEE; font-size: 16px;}
 		.msg-body .msg-item.other .content{}
 		.msg-body .msg-item.me .content{ float: right; }
 		.msg-body .msg-time{font-size: 12px; text-align: center; color: #AAAAAA;}
@@ -46,16 +46,21 @@
 						<div :class="['msg-item',isMe(item)?'me':'other']">
 							<div class="head" :style="{background:`rgba(${item.user.replace(/\./g,',')})`}">{{item.head}}</div>
 							<div class="username">{{nikeName(item)}}</div>
-							<div class="content">{{item.content}}</div>
+							<div class="content" v-html="item.content"></div>
 						</div>
 					</li>
 					<li class="list-bottom hidden"></li>
 				</ul>
 			</div>
 			<div class="msg-footer input-group">
-				<textarea class="form-control" aria-label="With textarea" v-model="inputVal"></textarea>
+				<textarea
+						class="form-control"
+						aria-label="With textarea"
+						autofocus
+						v-model="inputVal"
+						@keyup.ctrl.enter="sendMsg">.</textarea>
 				<div class="input-group-append">
-					<button class="btn btn-primary btn-outline-default" type="button" @click="sendMsg">发送</button>
+					<button class="btn btn-primary btn-outline-default" type="button" @click="sendMsg">发送<br/>(Ctrl+Enter)</button>
 				</div>
 			</div>
 		</div>
@@ -74,14 +79,15 @@
    * 支持修改自己的昵称,默认为代理IP
    * 上拉加载历史
    * 根据IP区分自己和别人的消息 √
-   * 添加用户默认头像
+   * 添加用户默认头像(页面使用IP作为rgba的参数)√
    * 构建界面,用现有插件兼容移动端
-   * 用户的判断 需要重新构思,设备号/IP
+   * 用户的判断 需要重新构思,设备号/IP(目前用IP作为唯一标识符)
    * 使用第四节课学到的 单文件储存来做数据持久化,√
    * 获取IP更改成node服务端获取,不需要用soho √
-   * 用户名策略需要调整,开发user接口用户查村对应的name
-   * 解决内容不换行的问题
-   * 开发撤回操作
+   * 用户名策略需要调整,开发user接口用户查村对应的name √
+   * 解决内容不换行的问题 √
+   * 开发撤回消息操作
+   * 回车发送消息,暂时没能解决组合键冲突的问题,暂用Ctrl+Enter发送
    * */
   /**
    * 插件清单
@@ -113,9 +119,9 @@
     methods: {
       // 发送消息
       sendMsg() {
-        if (!this.inputVal) return;
+        if (this.inputVal.replace(/\n/g, '') === '') return;
         const msg = {
-          content: this.inputVal,
+          content: this.inputVal.replace(/\n/g, '<br/>'),
           user: userIP,
         };
         socket.emit('chat message', msg);
@@ -126,7 +132,9 @@
         let top = document.querySelector('.list-bottom').offsetTop;
         console.log(top);
         document.querySelector('.msg-body').scrollTo(0, top);
-      }
+      },
+      // 回车发送消息,组合键处理
+      
     },
     computed: {
       // 用户昵称
@@ -142,7 +150,7 @@
           return item.user === this.user.nikeName;
         }
       },
-      // 消息时间
+      // 显示消息时间
       msgTime() {
         return (time, lastTime) => {
           /**
@@ -153,7 +161,6 @@
           let isToday = dateFns.isToday(_time);
           let res = dateFns.format(_time, isToday ? 'HH:mm' : "MM-DD HH:mm");
           let dm = dateFns.differenceInMinutes(time, lastTime);
-          console.log(dm);
           return dm > 2 ? res : null;
         }
       }
