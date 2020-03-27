@@ -28,7 +28,7 @@ function checkUser(ip) {
   return userIP // 返回用户ID
 }
 
-function addMessage(msg, userIP) {
+function addMessage(msg) {
   db.get('message', data => {
     // 消息列表用数组存储
     if (Object.keys(data).length === 0) data = [];
@@ -66,20 +66,20 @@ app.get('*', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-  // console.log('user connection userIP:', userIP);
-  // io.emit('connection', userIP)
+  // console.log('user connection userIP:', getuserIP());
+  // io.emit('connection', getuserIP())
   // 响应用户发送的信息
   socket.on('chat message', function (msg) {
     console.log('前', msg);
-    const msg2 = m.message({...msg, user: userIP});
-    addMessage(msg2, userIP);
+    const msg2 = m.message({...msg});
+    addMessage(msg2);
     console.log('后', msg2);
     // 广播给所有人
     io.emit('chat message', msg2)
   });
   socket.on('disconnect', function () {
-    // console.log('user disconnect', userIP);
-    io.emit('disconnect', userIP)
+    // console.log('user disconnect');
+    io.emit('disconnect')
   })
 });
 http.listen(9000, function () {

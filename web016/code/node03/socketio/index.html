@@ -116,6 +116,7 @@
         if (!this.inputVal) return;
         const msg = {
           content: this.inputVal,
+          user: userIP,
         };
         socket.emit('chat message', msg);
         this.inputVal = '';
