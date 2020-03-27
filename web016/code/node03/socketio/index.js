@@ -12,7 +12,13 @@ const m = require('./module');
 app.set('trust proxy', true);
 let userIP = '';
 
-// 请求浏览器发起请求的时候 判断用户,是新用户还是已存在用户
+
+/**
+ * 请求浏览器发起请求的时候 判断用户,是新用户还是已存在用户
+ * @param req
+ * @param res
+ * @param callback
+ */
 function checkUser(req, res, callback) {
   userIP = req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0];
   // 检索用户表,如果有就使用如果没有就新增用户
@@ -44,7 +50,7 @@ function addMessage(msg) {
 }
 
 // 请求根根路径
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   checkUser(req, res);
   // console.log('用户[', userIP, ']发起请求');
   res.sendFile(__dirname + '/index.html')
@@ -81,17 +87,17 @@ app.get('/message', (req, res) => {
   )
 });
 // 所有请求--暂时全部显示为index.html
-app.get('*', function (req, res) {
+app.get('*', (req, res) => {
   checkUser(req, res);
   // console.log('用户[', userIP, ']发起请求');
   res.sendFile(__dirname + '/index.html')
 });
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
   // console.log('user connection userIP:', getuserIP());
   // io.emit('connection', getuserIP())
   // 响应用户发送的信息
-  socket.on('chat message', function (msg) {
+  socket.on('chat message', msg => {
     console.log('前', msg);
     const msg2 = m.message({...msg});
     addMessage(msg2);
@@ -99,12 +105,12 @@ io.on('connection', function (socket) {
     // 广播给所有人
     io.emit('chat message', msg2)
   });
-  socket.on('disconnect', function () {
+  socket.on('disconnect', () => {
     // console.log('user disconnect');
     io.emit('disconnect')
   })
 });
-http.listen(9000, function () {
+http.listen(9000, () => {
   console.log('listen on http://localhost:9000');
 });
 /**
