@@ -49,11 +49,6 @@ app.get('/', function (req, res) {
   // console.log('用户[', userIP, ']发起请求');
   res.sendFile(__dirname + '/index.html')
 });
-// 给前端一个IP的接口--待废弃
-app.get('/ip', function (req, res) {
-  userIP = req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0];
-  res.send(`const userIP = '${userIP}'`)
-});
 // 请求用户信息接口
 app.get('/user', function (req, res) {
   checkUser(req, res, data => {

@@ -83,7 +83,6 @@
 <!--<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>-->
 <script src="https://cdn.bootcss.com/axios/0.19.2/axios.min.js"></script>
 <script src="https://cdn.bootcss.com/date-fns/1.30.1/date_fns.min.js"></script>
-<script src="/ip">/*这是node接口 返回 userIP*/</script>
 <script>
   /**
    * 上线提醒
@@ -125,8 +124,12 @@
       inputVal: '', // 文本域
       online: 0,// 在线人数
       user: {
-        ip: userIP, // 数据库中存的就是这个字段
-        name: '',
+        id: '0',
+        ip: '127.0.0.1',
+        name: 'name',
+        online: false,
+        createAt: 0,
+        updateAt: 0,
       },
       emptyMsg: false,
     },
@@ -137,7 +140,7 @@
         if (this.emptyMsg) return;
         const msg = {
           content: this.inputVal.replace(/\n/g, '<br/>'), // 将 换行字符 处理成 换行代码
-          user: userIP,
+          user: this.user.ip,
         };
         socket.emit('chat message', msg);
         this.inputVal = '';
@@ -157,8 +160,8 @@
       // 用户昵称
       nikeName() {
         return function (msg) {
-          // 有用户名 使用用户名,如果没有那就使用IP
-          return msg.user ? msg.user : msg.name;
+          // TODO 有用户名 使用用户名,如果没有那就使用IP--目前只能是自己的
+          return msg.user === this.user.ip ? this.user.name : msg.user;
         }
       },
       // is me
@@ -187,16 +190,21 @@
       socket.on('chat message', msg => {
         this.msgList.push(msg);
       });
-      // 请求后端的数据,返回后10条
+      // 请求用户相关信息
+      axios.get('/user', {})
+        .then(response => {
+          this.user = response.data
+          console.log(this.user);
+        })
+        .catch(error => console.log(error))
+      // 请求后端消息数据,[期望:返回后10条,需要配套下拉刷新一起实现]
       axios.get('/message', {})
-        .then((response) => {
+        .then(response => {
           console.log('响应数据', response.data);
           if (Object.keys(response.data).length === 0) return console.log('消息记录数量为0');
           this.msgList = this.msgList.concat(response.data);
         })
-        .catch(function (error) {
-          console.log(error);
-        })
+        .catch(error => console.log(error))
     },
     updated() {
       this.scrollToBottom()
