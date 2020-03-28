@@ -1,44 +1,40 @@
-const Koa = require('koa');
-const app = new Koa();
-const session = require('koa-session');
-const redisStore = require('koa-redis');
-const redis = require('redis');
-const redisClient = redis.createClient(6379, 'localhost');
+const koa = require('koa')
+const app = new koa()
+const session = require('koa-session')
 
+const redisStore = require('koa-redis')
+const redis = require('redis')
+const redisClient = redis.createClient(6379, 'localhost')
 
-app.keys = ['some secret'];
+const wrapper = require('co-redis')
+const client = wrapper(redisClient)
 
-app.use(session({
-  key: 'kkb:sess',
-  store: redisStore({})
-}));
+app.keys = ['some secret']
 
-// // 配置
-// const SESS_CONFIG = {
-//   key: 'kkb:sess',
-//   maxAge: 86400000,
-//   httpOnly: true,
-//   signed: true,
-// };
-//
-// // 注册
-// app.use(session(SESS_CONFIG, app));
+const SESS_CONFIG = {
+  key: 'kkb:sess', // 名
+  // maxAge: 8640000, // 有效期
+  // httpOnly: true, // 服务器有效
+  // signed: true // 签名
+  store: redisStore({client})
+}
 
-app.use(async (ctx, next) => {
-  const keys = await client.keys('*');
-  for (const key of keys) {
-    console.log(await client.get(key))
-  }
-})
+app.use(session(SESS_CONFIG, app))
 
-// 测试
 app.use(ctx => {
-  if (ctx.path === 'favicon.ico') return;
-  // 获取
-  let n = ctx.session.count || 0;
+  // 查看redis
+  redisClient.keys('*', (err, keys) => {
+    console.log('keys:', keys)
+    keys.forEach(key => {
+      redisClient.get(key, (err, val) => {
+        console.log(val)
+      })
+    })
+  })
   
-  // 设置
-  ctx.session.count = ++n;
-  ctx.body(`第${n}次访问`)
-  
-}).listen(3000);
+  if (ctx.path === '/favicon.ico') return
+  let n = ctx.session.count || 0
+  ctx.session.count = ++n
+  ctx.body = `第${n}次访问`
+})
+app.listen(3000)

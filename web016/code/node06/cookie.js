@@ -14,6 +14,8 @@ http.createServer((req, res) => {
   const cookie = req.headers.cookie;
   if (cookie && cookie.indexOf(sessionKey) > -1) {
     res.end('Come Back');
+    console.log('cookie:', req.headers.cookie)
+    // 简略写法未必具有通用性
     const pattern = new RegExp(`${sessionKey}=([^;]+);?\s*`);
     const sid = pattern.exec(cookie)[1];
     console.log(`session`, sid, session, session[sid])
@@ -22,7 +24,7 @@ http.createServer((req, res) => {
     // 设置cookie
     res.setHeader('Set-Cookie', `${session}=${sid}`);
     session[sid] = {name: 'laowang'}
-    res.end('Hello')
+    res.end('Hello cookie')
   }
 })
   .listen(3000);
