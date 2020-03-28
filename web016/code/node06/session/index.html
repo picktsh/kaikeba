@@ -1,12 +1,60 @@
 <!doctype html>
-<html lang="zh_CN">
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-<div></div>
+
+<div id="app">
+	<div>
+		<input v-model="username">
+		<input v-model="password">
+	</div>
+	<div>
+		<button @click="login">Login</button>
+		<button @click="logout">Logout</button>
+		<button @click="getUser">GetUser</button>
+	</div>
+	<div>
+		<button onclick="document.getElementById('log').innerHTML = ''">Clear Log</button>
+	</div>
+</div>
+<h6 id="log"></h6>
+<script>
+  // axios.defaults.baseURL = 'http://localhost:3000'
+  axios.defaults.withCredentials = true
+  axios.interceptors.response.use(
+    response => {
+      document.getElementById('log').append(JSON.stringify(response.data))
+      return response;
+    }
+  );
+  var app = new Vue({
+    el: '#app',
+    data: {
+      username: 'test',
+      password: 'test'
+    },
+    methods: {
+      async login() {
+        await axios.post('/login', {
+          username: this.username,
+          password: this.password
+        })
+      },
+      async logout() {
+        await axios.post('/logout')
+      },
+      async getUser() {
+        await axios.get('/getUser')
+      }
+    }
+  });
+</script>
 </body>
 </html>
