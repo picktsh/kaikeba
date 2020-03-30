@@ -111,7 +111,7 @@ io.on('connection', (socket) => {
   })
 });
 http.listen(9000, () => {
-  console.log('listen on http://localhost:9000');
+  console.log('listen on http://127.0.0.1:9000');
 });
 /**
  * 使用单文件fs储存聊天记录
