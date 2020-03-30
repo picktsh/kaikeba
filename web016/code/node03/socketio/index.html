@@ -12,6 +12,7 @@
 		/*表头*/
 		.msg-header{ position: absolute; top: 0; left: 0; right: 0;}
 		.msg-header .alert{ margin-bottom: 0;}
+		.msg-header .alert .header-menu{ float: right; }
 		/*列表*/
 		.msg-body{ height: 100%; overflow-y: auto; }
 		.msg-body .list-group{ }
@@ -41,7 +42,10 @@
 	<div class="container">
 		<div class="msg-wrapper">
 			<div class="msg-header">
-				<div class="alert alert-primary" role="alert">{{title}}</div>
+				<div class="alert alert-primary" role="alert">
+					{{title}}
+					<div class="header-menu" @click="menu=!menu">菜单{{menu}}</div>
+				</div>
 			</div>
 			<div class="msg-body">
 				<ul class="list-group">
@@ -148,6 +152,7 @@
         }
       },
       emptyMsg: false,
+      menu: false
     },
     methods: {
       // 发送消息
@@ -170,7 +175,7 @@
       // 回车发送消息,组合键处理
       keypress() {
         this.emptyMsg = false;
-      }
+      },
     },
     computed: {
       // 用户昵称
