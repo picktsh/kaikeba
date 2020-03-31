@@ -18,3 +18,20 @@ function load(dir, cb) {
     cb(filename, file)
   })
 }
+
+function initRouter() {
+  const router = new Router()
+  load('routes', (filename, routes) => {
+    // 前缀
+    const prefix = filename === 'index' ? '' : `/${filename}`
+    // 遍历对象
+    Object.keys(routes).forEach(key => {
+      const [method, path] = key.split(' ')
+      console.log(`正在映射地址: ${method.toLocaleUpperCase()} ${prefix} ${path}`)
+      router[method](prefix + path, routes[key])
+    })
+  })
+  return router
+}
+
+module.exports = {initRouter}
