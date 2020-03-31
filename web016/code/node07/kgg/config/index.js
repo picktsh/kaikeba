@@ -1,3 +1,6 @@
 module.exports = {
-  db: {}
+  db: {
+    dialect: 'mysql',
+    host: 'localhost',
+  }
 }

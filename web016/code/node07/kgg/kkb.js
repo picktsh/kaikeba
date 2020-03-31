@@ -1,10 +1,17 @@
 const Koa = require('koa')
-const {initRouter, initController, initService, loadConfig} = require('./kkb-loader')
+const {
+  initRouter,
+  initController,
+  initService,
+  loadConfig,
+  initSchedule
+} = require('./kkb-loader')
 
 class kkb {
   constructor(conf) {
     this.$app = new Koa(conf)
     
+    this.$service = initSchedule()
     this.$service = loadConfig()
     this.$service = initService(this)
     this.$ctrl = initController(this)

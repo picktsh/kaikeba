@@ -67,11 +67,30 @@ const Sequelize = require('sequelize')
 
 function loadConfig() {
   load('config', (fileneme, conf) => {
-    if(conf.db){
-    
+    if (conf.db) {
+      app.$db = new Seruqlize(conf.db)
+      //加载模型
+      load('model', (filename, {schema, options}) => {
+        app.$model
+        app.db.sync()
+      })
+    }
+    if (conf.middleware) {
+      conf.middleware.forEach(mid => {
+        const midPath = path.resolve(__dirname, 'middleware', mid)
+        app.$app.use(midPath)
+      })
     }
   })
 }
 
 
-module.exports = {initRouter, initController, initService,loadConfig}
+const schedule = require('node-schedule')
+
+function initSchedule() {
+  load('schedule', (filename, scheduleConfig) => {
+    schedule.schedule
+  })
+}
+
+module.exports = {initRouter, initController, initService, loadConfig, initSchedule}
