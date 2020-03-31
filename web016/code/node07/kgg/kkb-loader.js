@@ -62,4 +62,16 @@ function initService() {
   return service
 }
 
-module.exports = {initRouter, initController, initService}
+
+const Sequelize = require('sequelize')
+
+function loadConfig() {
+  load('config', (fileneme, conf) => {
+    if(conf.db){
+    
+    }
+  })
+}
+
+
+module.exports = {initRouter, initController, initService,loadConfig}
