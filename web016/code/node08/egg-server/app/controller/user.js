@@ -18,7 +18,10 @@ class UserController extends Controller {
    */
   async create() {
     const {ctx} = this
-    ctx.body = 'user ctrl'
+    // ctx.body = 'user ctrl 888'
+    const res = {abd: 123}
+    // 设置响应内容
+    ctx.helper.success({ctx, res})
   }
 }
 
