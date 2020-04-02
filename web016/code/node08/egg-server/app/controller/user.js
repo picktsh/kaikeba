@@ -18,8 +18,17 @@ class UserController extends Controller {
    */
   async create() {
     const {ctx} = this
+    
+    // 校验参数
+    ctx.validate(ctx.rule.createUserRequest)
+    
     // ctx.body = 'user ctrl 888'
-    const res = {abd: 123}
+    // const res = {abd: 123}
+    
+    const payload = ctx.request.body.body || {}
+    
+    // 调用Service 进行业务处理
+    
     // 设置响应内容
     ctx.helper.success({ctx, res})
   }
