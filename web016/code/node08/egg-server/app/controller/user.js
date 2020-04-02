@@ -13,7 +13,7 @@ class UserController extends Controller {
    * @description 创建用户,记录用户账户/密码/类型
    * @touter post /api/user
    * @request body createUserRequest *body
-   * @response
+   * @response baseResponse 创建成功
    * @returns {Promise<void>}
    */
   async create() {
