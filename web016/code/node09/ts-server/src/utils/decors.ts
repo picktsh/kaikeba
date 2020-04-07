@@ -11,6 +11,10 @@ type RouterOptions = {
 
 @Menu('xxxx', {role: 'admin'})
 
+export const  middlewares = function () {
+
+}
+
 const router = new KoaRouter()
 // export const get = (path: string, options?: RouterOptions) => {
 //     return (target, property, descriptor) => {
@@ -19,7 +23,7 @@ const router = new KoaRouter()
 //     }
 // }
 
-const decorate = (method: HTTPMethod, path: string, options?: RouterOptions, router?: KoaRouter) => (path: string, options?: RouterOptions) => {
+const decorate = (method: HTTPMethod, path: string, options: RouterOptions = {}, router?: KoaRouter) => (path: string, options?: RouterOptions) => {
     return (target, property, descriptor) => {
         // 添加中间件数组
         const middleware = []
@@ -31,7 +35,7 @@ const decorate = (method: HTTPMethod, path: string, options?: RouterOptions, rou
     }
 }
 
-export const method = method => (path: string, options: RouterOptions) => decorate(method, path, options, router)
+export const method = method => (path: string, options?: RouterOptions) => decorate(method, path, options, router)
 
 export const get = method('get')
 export const put = method('put')
