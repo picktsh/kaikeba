@@ -1,4 +1,5 @@
 import * as Koa from 'koa'
+import {get, post} from '../utils/decors'
 
 const users = [{name: 'tom'}]
 export default class User {
