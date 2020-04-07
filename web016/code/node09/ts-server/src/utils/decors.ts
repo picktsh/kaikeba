@@ -6,7 +6,7 @@ type HTTPMethod = 'get' | 'put' | 'del' | 'post' | 'patch'
 
 type RouterOptions = {
     prefix?: string;
-    middleware?: Array<Koa.Middleware>;
+    middlewares?: Array<Koa.Middleware>;
 }
 
 @Menu('xxxx', {role: 'admin'})
@@ -21,8 +21,13 @@ const router = new KoaRouter()
 
 const decorate = (method: HTTPMethod, path: string, options?: RouterOptions, router?: KoaRouter) => (path: string, options?: RouterOptions) => {
     return (target, property, descriptor) => {
-        const url = options && options.prefix ? options.prefix : path
-        router[method](url, target[property])
+        // 添加中间件数组
+        const middleware = []
+        if (options.middlewares) {
+            middleware.push(...options.middlewares)
+        }
+        const url = options && options.prefix ? options.prefix + path : path
+        router[method](url, ...property)
     }
 }
 
@@ -37,7 +42,7 @@ export const patch = method('patch')
 
 export const load = (folder: string, options: LoadOptions = {}) => {
     const extname = options.extname || '{js,tx}'
-    glob.sync(require('path').join(folder, `./**/*${extname}`)).forEach(()=>{
+    glob.sync(require('path').join(folder, `./**/*${extname}`)).forEach(() => {
 
     })
     return router
