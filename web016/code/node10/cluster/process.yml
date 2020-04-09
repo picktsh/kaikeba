@@ -1,0 +1,4 @@
+app:
+  -script:app.js
+  instances:2
+# yml 的配置文件
