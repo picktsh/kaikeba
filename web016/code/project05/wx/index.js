@@ -8,3 +8,13 @@ router.get('/wxCallback', async ctx => {
   ctx.redirect('/?openid=' + openid)
   
 })
+
+router.get('/getUser', async ctx => {
+  const openid = 0
+})
+
+
+router.get('/getJSConfig', async ctx => {
+  const res = await api.getJsConfig(ctx.query)
+  console.log('res', res);
+})
