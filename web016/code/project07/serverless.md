@@ -9,8 +9,10 @@
 serverless Nginx Function 基础设施
 
 ## ServerLess异同
-IaaS (Infrastructure) 专门提供场地/物业的服务
-PaaS (platform)   专门提供连锁扩张服务
-SaaS (Software)   基础设施+软件外包服务 Codeless
-BaaS    
+- IaaS (Infrastructure) 专门提供场地/物业的服务
+(还提供了弹性服务)
+- PaaS (platform)   专门提供连锁扩张服务
+- SaaS (Software)   基础设施+软件外包服务 Codeless
+(虽然无服务器,代码还是要自己写)
+- BaaS    
 
