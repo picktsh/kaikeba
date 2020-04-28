@@ -6,7 +6,7 @@ const hash1 = str => hash('sha1', str)
 const psw = '111111'
 
 console.log('md5',md5(psw))
-console.log('md5',hash1(psw))
+console.log('hash1',hash1(psw))
 
 // `彩虹表`
 
