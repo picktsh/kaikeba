@@ -3,6 +3,8 @@
 const path = require("path")
 
 module.exports = {
+  // 上下文 项目打包的相对路径-正常情况不会动
+  // context: process.cwd(),
   // 入口,执行构建的入口 项目入口
   entry: "./src/index.js",
   // 出口
