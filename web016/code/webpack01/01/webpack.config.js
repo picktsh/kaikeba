@@ -16,8 +16,13 @@ module.exports = {
   output: {
     // 构建的文件资源放在哪?必须是绝对路径
     path: path.resolve(__dirname, "./dist"),
-    // 构建的文件资源叫啥?
+    // 构建的文件资源叫啥? 无论是多出口还是单出口,都推拿使用占位符
     // filename: "main.js",
-    filename: "[name].js",// 占位符
+    filename: "[name]-[hash:6].js",// 对象模式,多出口;占位符
+    // 占位符:
+    // hash
+    // chunkhash
+    // name
+    // id
   }
 }
