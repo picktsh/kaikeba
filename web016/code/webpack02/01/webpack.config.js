@@ -18,6 +18,12 @@ module.exports = {
                     'postcss-loader',
                     'less-loader'
                 ],
+            },
+            {
+                test: /\.(png|jpe?g|gif|webp|svg)/,
+                use: [
+                    "url-loader"
+                ]
             }
         ]
     }
