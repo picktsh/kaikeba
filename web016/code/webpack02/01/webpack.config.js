@@ -28,11 +28,12 @@ module.exports = {
             }
         ]
     },
+    devtool: "source-map",
     plugins: [
         new HtmlWebpackPlugin({
             // 选择html模板
             template: "./scr/index.html",
-            title:"HtmlWebpackPlugin"
+            title: "HtmlWebpackPlugin"
         })
     ]
 }
