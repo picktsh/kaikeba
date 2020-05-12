@@ -4,5 +4,6 @@ console.log("index.js");
 // 1. webpack执行构建会找 webpack.config.js 这个配置文件
 import {add} from "./other"
 import "./index.css"
+import "./index.less"
 
 // console.log(add(2, 3))
