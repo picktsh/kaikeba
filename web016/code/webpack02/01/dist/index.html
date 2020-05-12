@@ -1,81 +1,19 @@
 Html Webpack Plugin:
 <pre>
-  Error: Child compilation failed:
-  Entry module not found: Error: Can't resolve 'G:\kaikeba\web016\code\webpack02\01\scr\i  ndex.html' in 'G:\kaikeba\web016\code\webpack02\01':
-  Error: Can't resolve 'G:\kaikeba\web016\code\webpack02\01\scr\index.html' in 'G:\kaikeb  a\web016\code\webpack02\01'
+  ReferenceError: HtmlWebpackPlugin is not defined
   
-  - child-compiler.js:122 
-    [01]/[html-webpack-plugin]/lib/child-compiler.js:122:18
+  - index.html:100 
+    G:/kaikeba/web016/code/webpack02/01/src/index.html:100:11
   
-  - Compiler.js:343 
-    [01]/[webpack]/lib/Compiler.js:343:11
+  - index.html:103 ./node_modules/html-webpack-plugin/lib/loader.js!./src/index.html.modu    le.exports
+    G:/kaikeba/web016/code/webpack02/01/src/index.html:103:3
   
-  - Compiler.js:681 
-    [01]/[webpack]/lib/Compiler.js:681:15
+  - index.js:393 
+    [01]/[html-webpack-plugin]/index.js:393:16
   
+  - task_queues.js:97 processTicksAndRejections
+    internal/process/task_queues.js:97:5
   
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [01]/[tapable]/lib/Hook.js:154:20
+  - async Promise.all
   
-  - Compiler.js:678 
-    [01]/[webpack]/lib/Compiler.js:678:31
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [01]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1423 
-    [01]/[webpack]/lib/Compilation.js:1423:35
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [01]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1414 
-    [01]/[webpack]/lib/Compilation.js:1414:32
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [01]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1409 
-    [01]/[webpack]/lib/Compilation.js:1409:36
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [01]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1405 
-    [01]/[webpack]/lib/Compilation.js:1405:32
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [01]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1342 Compilation.seal
-    [01]/[webpack]/lib/Compilation.js:1342:27
-  
-  - Compiler.js:675 
-    [01]/[webpack]/lib/Compiler.js:675:18
-  
-  - Compilation.js:1261 
-    [01]/[webpack]/lib/Compilation.js:1261:4
-  
-  
-  - Hook.js:154 AsyncSeriesHook.lazyCompileHook
-    [01]/[tapable]/lib/Hook.js:154:20
-  
-  - Compilation.js:1253 Compilation.finish
-    [01]/[webpack]/lib/Compilation.js:1253:28
-  
-  - Compiler.js:672 
-    [01]/[webpack]/lib/Compiler.js:672:17
-  
-  
-  - Compilation.js:1185 
-    [01]/[webpack]/lib/Compilation.js:1185:12
-  
-  - Compilation.js:1044 errorAndCallback
-    [01]/[webpack]/lib/Compilation.js:1044:6
-  
-</pre><script src="main.js"></script>
+</pre>

@@ -32,7 +32,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             // 选择html模板
-            template: "./scr/index.html",
+            template: "./src/index.html",
             title: "HtmlWebpackPlugin"
         })
     ]
