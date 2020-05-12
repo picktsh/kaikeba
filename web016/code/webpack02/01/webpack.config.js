@@ -1,4 +1,5 @@
 const path = require("path")
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     entry: "./src/index.js",
     output: {path: path.resolve(__dirname, "./dist"), filename: "[name].js",},
@@ -26,5 +27,12 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            // 选择html模板
+            template: "./scr/index.html",
+            title:"HtmlWebpackPlugin"
+        })
+    ]
 }
