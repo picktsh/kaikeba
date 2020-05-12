@@ -6,7 +6,19 @@ module.exports = {
     module: {
         rules: [
             {test: /\.css$/, use: ['style-loader', 'css-loader'],},
-            {test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'],}
+            {
+                test: /\.less$/, use: [
+                    'style-loader',
+                    // {
+                    //     loader: "css-loader",
+                    //     // css module 开启
+                    //     option: {modules: true}
+                    // },
+                    "css-loader",
+                    'postcss-loader',
+                    'less-loader'
+                ],
+            }
         ]
     }
 }
