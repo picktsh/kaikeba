@@ -29,6 +29,11 @@ module.exports = {
         ]
     },
     devtool: "source-map",
+    devServer: {
+        contentBase: path.resolve(__dirname, "./dist"),
+        port: 8080,
+        open: true,
+    },
     plugins: [
         new HtmlWebpackPlugin({
             // 选择html模板
