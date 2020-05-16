@@ -25,7 +25,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.less$/,
                 include: path.resolve(__dirname, "./src/"),
                 use: [
                     {
