@@ -1,5 +1,8 @@
 const path = require('path')
 module.exports = {
+    output: {
+        publicPath: "https://cdn.___.com/assets/[name].jsx",
+    },
     resolve: {
         // 查找三方依赖
         modules: [path.resolve(__dirname, "./node_modules")],
@@ -16,7 +19,8 @@ module.exports = {
     // 排除打包,cdn资源不打包进bundle
     externals: {
         // jquery
-        jquery: "jQuery",
+        $: "jQuery",
+        _: "_",
     },
     module: {
         rules: [
