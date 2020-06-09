@@ -28,7 +28,7 @@ class FirstScreen extends StatelessWidget {
         leading: Text('leading'),
         actions: [Text('actions')],
       ),
-      body: Center(child: Text('First Screen')),
+      body: ScreenWidget(text: '111asdasd1'),
       bottomNavigationBar: BottomNavigationBar(items: [
         new BottomNavigationBarItem(
             icon: Icon(Icons.account_balance), title: Text('银行')),
@@ -37,6 +37,26 @@ class FirstScreen extends StatelessWidget {
         new BottomNavigationBarItem(
             icon: Icon(Icons.library_music), title: Text('音乐'))
       ]),
+      drawer: Drawer(
+        child: Center(
+          child: Text('Drawer'),
+        ),
+      ),
     );
+  }
+}
+
+class ScreenWidget extends StatelessWidget {
+  final String text;
+
+  const ScreenWidget({Key key, this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+        child: Text(
+      text,
+      style: TextStyle(fontSize: 40),
+    ));
   }
 }
