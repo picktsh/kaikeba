@@ -6,6 +6,10 @@ flutter create flutterProject
 ```
 flutter doctor
 ```
+- 运行项目
+```
+flutter run
+```
 - 运行时
 ```
 Flutter run key commands.
