@@ -1,4 +1,6 @@
--创建项目
+- Flutter [中文文档](https://flutter.cn/docs)
+
+- 创建项目
 ```
 flutter create flutterProject
 ```
