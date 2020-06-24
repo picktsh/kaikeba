@@ -3,9 +3,24 @@
     <div class="xx" style="color:red">{{name}}</div>
     <div :class="classA">name</div>
 
-    <div :class="classA">{{name}}</div>
-    <div @click="()=>count++"></div>
-    <div v-if="xx">
-        <div>xx</div>
-    </div>
+    <!--    <div :class="classA">{{name}}</div>-->
+    <!--    <div @click="()=>count++"></div>-->
+    <!--    <div v-if="xx">-->
+    <!--        <div>xx</div>-->
+    <!--    </div>-->
+    div>div>div>div
 </div>
+
+<script>
+    const action1 = 1
+    const action2 = 1 << 1
+    const action3 = 1 << 2
+
+    // 操作1 0 0 1
+    // 操作2 0 1 0
+    // 操作3 1 0 0
+
+    //怎么授权 按位或
+    const action4 = action1 | action2 | action3
+    console.log(action4)
+</script>
