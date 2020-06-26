@@ -26,7 +26,7 @@
 
 React 17 ？期待
 
-横向的扩展
+横向的扩展  
 fiber 两个⼤件，1. vdom从树=》链表 2. 利⽤浏览器渲染的间隔时间 requestIdleCallback 1. 前端架构
 的更迭，本质上是数据结构和计算机基础逐渐深⼊的发展 以前的vdom{type：，children，props} 新
 的vdom {type，child，return，slibing， props} 2. 16.6ms ⼀帧 任何占⽤主进程超过这个时间，都可
