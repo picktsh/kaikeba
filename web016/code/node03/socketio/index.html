@@ -22,9 +22,9 @@
 		.msg-body .msg-item{ position: relative; width: 100%; }
 		.msg-body .msg-item.other{ padding-left: 60px;}
 		.msg-body .msg-item.me{ float: right; padding-right: 60px; }
-		.msg-body .msg-item .head{ width: 50px; height: 50px; border-radius: 25px; border: 1px solid #EEEEEE; background: rgba(0, 0, 0, .05)}
-		.msg-body .msg-item.other .head{ position: absolute; left: 0; }
-		.msg-body .msg-item.me .head{ position: absolute; right: 0; }
+		.msg-body .msg-item .avatar{ width: 50px; height: 50px; line-height: 50px; border-radius: 25px; border: 1px solid #EEEEEE; background: rgba(0, 0, 0, .05); font-size: 20px; text-align: center; color: #fff; text-transform: uppercase; }
+		.msg-body .msg-item.other .avatar{ position: absolute; left: 0; }
+		.msg-body .msg-item.me .avatar{ position: absolute; right: 0; }
 		.msg-body .msg-item .username{ font-size: 14px; color: #AAAAAA;}
 		.msg-body .msg-item.me .username{ text-align: right; }
 		.msg-body .msg-item .content{ display: inline-block; min-height: 34px; padding: 5px 10px; border-radius: 5px; background: #EEEEEE; font-size: 16px;}
@@ -57,7 +57,7 @@
 					<li v-for="(item,index) in msgList" class="list-group-item" aria-disabled="true">
 						<div class="msg-time">{{msgTime(item.createAt,msgList[index-1]&&msgList[index-1].createAt)}}</div>
 						<div :class="['msg-item',isMe(item)?'me':'other']">
-							<div class="head" :style="{background:`rgba(${item.user.replace(/\./g,',')})`}">{{item.head}}</div>
+							<div class="avatar" :style="{background:`rgba(${item.user.replace(/\./g,',')})`}">{{avatar(item)}}</div>
 							<div class="username">{{nikeName(item)}}</div>
 							<div class="content" v-html="item.content"></div>
 						</div>
@@ -209,8 +209,16 @@
           let dm = dateFns.differenceInMinutes(time, lastTime);
           return dm > 2 ? res : null;
         }
-      }
-    },
+			},
+			// avatar 用户头像 用名字生成,后面可能会用canvas工具
+			avatar() {
+				return function (item) {
+					// 字母通过CSS转换成大写
+					let avatar = this.nikeName(item).slice(0, 2)
+					return avatar
+				}
+			}
+		},
     mounted() {
       // 开始监听 聊天 事件
       socket.on('chat message', msg => {
