@@ -26,3 +26,11 @@ function expect(ret) {
 test('测试数字相加', () => {
     expect(add(1, 2)).toBe(3)
 })
+
+
+// 新的开发模式 TDD
+// 比如说想让add函数支持字符串相加, TDD就是先写测试
+// 然后报错,再去写逻辑
+test('测试字符串相加', () => {
+    expect(add(1, 2)).toBe(3)
+})
