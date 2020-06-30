@@ -8,8 +8,8 @@ function test(title, fn) {
         fn()
         console.log(title, '测试通过');
     } catch (e) {
-        console.log(e);
-        console.log(title, '测试失败');
+        console.error(e);
+        console.error(title, '测试失败');
     }
 }
 
