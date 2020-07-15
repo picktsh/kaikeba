@@ -39,4 +39,9 @@
         7. websocket推送
         8. cdn ...
     
+### 第二章 
+
+- 06 项目搭建
+    - 搭建前端项目 [官网](https://zh.nuxtjs.org/) `npx create-nuxt-app <项目名>`
+    - 搭建服务端项目 [官网](https://eggjs.org/zh-cn/) `npm init egg --type=simple`
 
