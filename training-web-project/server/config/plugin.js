@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /** @type Egg.EggPlugin */
 module.exports = {
@@ -6,4 +6,4 @@ module.exports = {
   // static: {
   //   enable: true,
   // }
-};
+}
