@@ -45,3 +45,11 @@
     - 搭建前端项目 [官网](https://zh.nuxtjs.org/) `npx create-nuxt-app <项目名>`
     - 搭建服务端项目 [官网](https://eggjs.org/zh-cn/) `npm init egg --type=simple`
 
+- 08 session 和jwt架构介绍
+    - mongodb,mysql; 
+    - register,login;
+    - check user, verify;
+    - captcha,send email,send message
+   
+
+
