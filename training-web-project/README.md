@@ -50,6 +50,12 @@
     - register,login;
     - check user, verify;
     - captcha,send email,send message
+    
+    登录态
+    
+    - session,browser cookie; node session
+    - jwt 
+    
    
 
 
