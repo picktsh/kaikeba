@@ -11,12 +11,14 @@ const menu = [
 export default class BottomNav extends Component {
   render() {
     return (
-      <div className="bottom-nav">
-        {menu.map((item, index) => {
-          return (
-            <MenuItem {...item} key={index}/>
-          )
-        })}
+      <div className="tab-bar">
+        <div className="tab-nav">
+          {menu.map((item, index) => {
+            return (
+              <MenuItem {...item} key={index}/>
+            )
+          })}
+        </div>
       </div>
     )
   }
