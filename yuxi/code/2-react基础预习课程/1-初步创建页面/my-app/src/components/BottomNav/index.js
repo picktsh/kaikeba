@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './index.less'
+import './index.scss'
 
 const menu = [
   { title: '首页', icon: 'home', link: '/', },
