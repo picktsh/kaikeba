@@ -9,13 +9,15 @@ const menu = [
 ]
 
 export default class BottomNav extends Component {
+
   render() {
+    const { tab, setTab } = this.props
     return (
       <div className="tab-bar">
         <div className="tab-nav">
           {menu.map((item, index) => {
             return (
-              <MenuItem {...item} key={index}/>
+              <MenuItem {...item} key={index} active={tab === index} onClick={() => setTab(index)}/>
             )
           })}
         </div>
@@ -24,9 +26,9 @@ export default class BottomNav extends Component {
   }
 }
 
-function MenuItem({ title, icon }) {
+function MenuItem({ title, icon, onClick, active }) {
   return (
-    <div className="menu-item">
+    <div className={`menu-item ${active ? 'active' : ''}`} onClick={onClick}>
       <span className={'iconfont icon-' + icon}/>
       <span className="title">{title}</span>
     </div>
