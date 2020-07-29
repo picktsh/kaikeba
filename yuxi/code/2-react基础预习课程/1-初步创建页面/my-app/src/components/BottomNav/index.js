@@ -3,9 +3,9 @@ import './index.scss'
 
 const menu = [
   { title: '首页', icon: 'home', link: '/', },
-  { title: '购物车', icon: 'home', link: '/cart', },
-  { title: '订单列表', icon: 'home', link: '/orderlist', },
-  { title: '用户中心', icon: 'home', link: '/user', },
+  { title: '购物车', icon: 'cart', link: '/cart', },
+  { title: '订单列表', icon: 'form', link: '/orderlist', },
+  { title: '用户中心', icon: 'emoji', link: '/user', },
 ]
 
 export default class BottomNav extends Component {
